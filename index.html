@@ -2,1044 +2,612 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>신풍종합개발㈜</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="신풍종합개발㈜ 회사 소개, 사업분야, 인증/허가, 연락처 정보를 제공합니다." />
-
-  <!-- 구글 폰트 (한글용) -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>신풍종합개발㈜ — 사회적기업 · 건물종합관리 전문</title>
+  <meta name="description" content="건물시설관리, 시설경비, 저수조청소, 돌봄SOS 등 종합 건물관리 서비스를 제공하는 사회적기업입니다." />
+  
+  <!-- Fonts: Pretendard (Modern UI Standard) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- 아이콘 (Bootstrap Icons) -->
+  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
+    /* ============================================================
+       RE-DESIGN SYSTEM — Professional & Trust
+       Primary: Indigo Blue  Secondary: Emerald Green
+    ============================================================ */
+    :root {
+      --c-bg:         #ffffff;
+      --c-bg-alt:     #f8fafc;
+      --c-bg-card:    #ffffff;
+      --c-bg-dark:    #0f172a; /* Deep Navy */
+      --c-primary:    #1e293b; /* Slate Blue */
+      --c-accent:     #10b981; /* Emerald Green */
+      --c-accent-dark: #059669;
+      --c-text:       #1e293b;
+      --c-muted:      #64748b;
+      --c-border:     #e2e8f0;
+      --ff-sans:      "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      --r-lg:         1rem;
+      --r-md:         0.75rem;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md:    0 10px 25px -5px rgba(0,0,0,0.05);
+      --shadow-lg:    0 20px 50px -12px rgba(0,0,0,0.1);
+      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      scroll-behavior: smooth;
+      font-family: var(--ff-sans);
+      background: var(--c-bg);
+      color: var(--c-text);
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      overflow-x: hidden;
     }
 
-    /* 네비게이션 바 */
-    .navbar {
-      transition: all 0.2s ease;
+    /* ── SKIP NAV ── */
+    .skip-nav {
+      position: absolute; top: -100%; left: 50%;
+      transform: translateX(-50%);
+      background: var(--c-bg-dark); color: #fff;
+      padding: .5rem 1.5rem; border-radius: 0 0 8px 8px;
+      font-size: .9rem; z-index: 9999;
+      transition: top .2s;
     }
-    .navbar-scrolled {
-      background: rgba(0, 0, 0, 0.8) !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    .skip-nav:focus { top: 0; }
+
+    /* ══════════════════════════════════
+       NAVBAR (Clean Indigo Style)
+    ══════════════════════════════════ */
+    .sp-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--c-border);
+      transition: all 0.3s var(--ease);
+    }
+    .sp-nav.scrolled { padding: 0.5rem 0; box-shadow: var(--shadow-sm); }
+    .sp-nav-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .sp-brand {
+      font-size: 1.25rem; font-weight: 800;
+      color: var(--c-primary); text-decoration: none;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .brand-dot {
+      width: 10px; height: 10px;
+      background: var(--c-accent); border-radius: 2px; /* Rectangular point */
+    }
+    .sp-nav-links {
+      display: flex; align-items: center; list-style: none; gap: 0.5rem;
+      margin: 0;
+    }
+    .sp-nav-links a {
+      display: block; padding: .5rem 1rem;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--c-muted); text-decoration: none;
+      transition: all .2s var(--ease);
+    }
+    .sp-nav-links a:hover, .sp-nav-links a.active { color: var(--c-accent); }
+
+    .sp-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer;
+    }
+    .sp-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--c-primary); border-radius: 2px;
     }
 
-    /* 메인 히어로 섹션 (배경 이미지 + 파란 톤 오버레이) */
+    /* mobile menu */
+    .sp-mobile-menu {
+      display: none; position: fixed; top: 72px; left: 0; right: 0;
+      background: var(--c-bg); border-bottom: 1px solid var(--c-border);
+      padding: 1.5rem 2rem; z-index: 999;
+    }
+    .sp-mobile-menu.open { display: block; }
+    .sp-mobile-menu a {
+      display: block; padding: 1rem 0;
+      color: var(--c-text); text-decoration: none;
+      font-size: 1.1rem; font-weight: 600;
+      border-bottom: 1px solid var(--c-bg-alt);
+    }
+
+    /* ══════════════════════════════════
+       SECTION BASE
+    ══════════════════════════════════ */
+    .sp-section { padding: 120px 0; position: relative; }
+    .sp-section-alt { background: var(--c-bg-alt); }
+    .sp-section-dark { background: var(--c-bg-dark); color: #fff; }
+    .sp-wrap { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+
+    .eyebrow {
+      font-size: .85rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--c-accent); margin-bottom: 1rem;
+      display: block;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800; line-height: 1.25;
+      color: var(--c-primary); margin-bottom: 1.5rem;
+    }
+    .sp-section-dark .section-title { color: #fff; }
+    .section-desc {
+      font-size: 1.1rem; color: var(--c-muted);
+      max-width: 600px; line-height: 1.7;
+    }
+    .sp-section-dark .section-desc { color: #94a3b8; }
+
+    /* ══════════════════════════════════
+       HERO (Modern Indigo Gradient)
+    ══════════════════════════════════ */
     #hero {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-
-      /* 🔵 회사 전경/상징 사진으로 교체해서 사용 */
-      background:
-        linear-gradient(135deg, rgba(0, 31, 63, 0.88), rgba(0, 74, 143, 0.9)),
-        url("https://via.placeholder.com/1600x900?text=Shinpoong+Building+Image");
-
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      color: #ffffff;
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 80px;
     }
-
     #hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent 60%);
-      opacity: 0.8;
-      pointer-events: none;
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
     }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
+    .hero-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 2rem;
+      position: relative; z-index: 1; width: 100%;
     }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2.5rem; }
+    .hero-badge {
+      padding: .4rem 1.2rem; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
+      font-size: .85rem; color: #cbd5e1; font-weight: 500;
+    }
+    .hero-badge i { color: var(--c-accent); margin-right: 6px; }
 
     .hero-title {
-      font-size: clamp(2.7rem, 4vw, 3.6rem);
-      font-weight: 700;
-      line-height: 1.2;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.1;
+      color: #fff; margin-bottom: 2rem;
     }
-
-    .hero-subtitle {
-      font-size: 1.05rem;
-      margin-top: 1rem;
-      max-width: 540px;
-      opacity: 0.94;
+    .hero-title em { font-style: normal; color: var(--c-accent); }
+    .hero-sub {
+      font-size: 1.25rem; color: #94a3b8;
+      max-width: 650px; line-height: 1.8; margin-bottom: 3.5rem;
     }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      font-size: 0.85rem;
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn-sp-primary {
+      padding: 1rem 2.5rem; background: var(--c-accent); color: #fff;
+      font-size: 1.05rem; font-weight: 700; border-radius: .5rem;
+      text-decoration: none; transition: all .25s;
     }
-
-    .hero-badge i {
-      font-size: 1rem;
+    .btn-sp-primary:hover { background: var(--c-accent-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
+    .btn-sp-ghost {
+      padding: 1rem 2.5rem; background: transparent; color: #fff;
+      font-size: 1.05rem; font-weight: 700; border-radius: .5rem;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all .25s;
     }
+    .btn-sp-ghost:hover { background: rgba(255,255,255,0.05); border-color: #fff; }
 
-    .hero-buttons .btn {
-      border-radius: 999px;
-      padding: 0.7rem 1.6rem;
-      font-weight: 500;
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 4rem;
+      margin-top: 5rem; padding-top: 4rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
+    .hero-stat-num { font-size: 2.5rem; font-weight: 800; color: #fff; display: block; line-height: 1; }
+    .hero-stat-label { font-size: .9rem; color: #64748b; margin-top: .5rem; display: block; font-weight: 600; }
 
-    .hero-card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 1.5rem;
-      padding: 1.8rem;
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #f9fafb;
+    /* ══════════════════════════════════
+       CARDS (Modern Minimal Style)
+    ══════════════════════════════════ */
+    .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+    .value-card {
+      background: var(--c-bg-card); border-radius: var(--r-lg); padding: 3rem 2.5rem;
+      border: 1px solid var(--c-border); transition: all .3s var(--ease);
     }
+    .value-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--c-accent); }
+    .value-icon { font-size: 2.5rem; color: var(--c-accent); margin-bottom: 1.5rem; }
+    .value-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; color: var(--c-primary); }
+    .value-card p { font-size: 1rem; color: var(--c-muted); line-height: 1.7; }
 
-    .hero-card h5 {
-      font-weight: 600;
-      margin-bottom: 0.8rem;
+    .mission-bar {
+      margin-top: 5rem; background: var(--c-primary); border-radius: var(--r-lg);
+      padding: 4rem; color: #fff; text-align: center;
     }
+    .mission-bar p { font-size: 1.75rem; font-weight: 700; line-height: 1.4; margin-bottom: 1rem; }
+    .mission-bar small { font-size: 1rem; color: #94a3b8; font-weight: 500; }
 
-    .hero-stat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
+    /* ══════════════════════════════════
+       SERVICES (Grid UI)
+    ══════════════════════════════════ */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .svc-card {
+      background: var(--c-bg-card); border-radius: var(--r-lg); padding: 2.5rem;
+      border: 1px solid var(--c-border); transition: all .3s; display: flex; flex-direction: column;
     }
+    .svc-card:hover { border-color: var(--c-accent); box-shadow: var(--shadow-md); }
+    .svc-num { font-size: 0.85rem; font-weight: 800; color: #e2e8f0; margin-bottom: 1.5rem; }
+    .svc-icon { font-size: 2rem; color: var(--c-accent); margin-bottom: 1.5rem; }
+    .svc-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; color: var(--c-primary); }
+    .svc-card p { font-size: 0.95rem; color: var(--c-muted); flex: 1; margin-bottom: 1.5rem; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .svc-tag { font-size: .75rem; padding: .25rem .75rem; background: var(--c-bg-alt); border-radius: 4px; color: var(--c-primary); font-weight: 600; }
 
-    .hero-stat strong {
-      font-size: 1.4rem;
+    /* ══════════════════════════════════
+       CERTIFICATIONS (Dark Contrast)
+    ══════════════════════════════════ */
+    .cert-layout { display: grid; grid-template-columns: 1fr 340px; gap: 4rem; margin-top: 4rem; }
+    .cert-item {
+      display: flex; gap: 1.5rem; padding: 2rem; background: rgba(255,255,255,0.03);
+      border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem;
     }
+    .cert-icon { font-size: 1.75rem; color: var(--c-accent); }
+    .cert-item h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+    .cert-item p { font-size: .95rem; color: #94a3b8; margin: 0; }
 
-    /* 섹션 공통 */
-    section {
-      padding: 80px 0;
+    .cert-badge-panel {
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+      border-radius: var(--r-lg); border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 4rem 2rem; text-align: center;
     }
+    .cert-badge-panel i { font-size: 4rem; color: var(--c-accent); margin-bottom: 2rem; display: block; }
+    .cert-badge-panel span { font-size: 1.25rem; font-weight: 800; display: block; line-height: 1.4; }
 
-    section .section-title {
-      font-size: 1.9rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
+    /* ══════════════════════════════════
+       PORTFOLIO & HISTORY
+    ══════════════════════════════════ */
+    .portfolio-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; }
+    .client-pill {
+      display: inline-block; padding: .5rem 1.25rem; background: #fff;
+      border: 1px solid var(--c-border); border-radius: 100px; margin: 0 .5rem .75rem 0;
+      font-size: .9rem; font-weight: 600; color: var(--c-primary);
     }
-
-    section .section-subtitle {
-      color: #6c757d;
-      font-size: 0.95rem;
-      margin-bottom: 2.4rem;
+    .stat-card {
+      background: var(--c-bg-card); border-radius: var(--r-lg); padding: 2.5rem;
+      border: 1px solid var(--c-border); text-align: center;
     }
+    .stat-card .n { font-size: 2.5rem; font-weight: 800; color: var(--c-accent); display: block; }
 
-    /* 회사 소개 */
-    .about-highlight {
-      border-left: 4px solid #0d6efd;
-      padding-left: 1rem;
-      margin-bottom: 1.5rem;
+    .history-layout { display: grid; grid-template-columns: 320px 1fr; gap: 6rem; margin-top: 4rem; }
+    .timeline { position: relative; padding-left: 3rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--c-border); }
+    .tl-item { position: relative; margin-bottom: 4rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -3rem; top: 0.5rem;
+      width: 11px; height: 11px; background: var(--c-accent); border-radius: 50%;
+      transform: translateX(-50%); border: 3px solid #fff; box-shadow: 0 0 0 4px var(--c-bg-alt);
     }
+    .tl-year { font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 1rem; }
+    .tl-event { display: block; font-size: 1.05rem; color: var(--c-muted); margin-bottom: .5rem; font-weight: 500; }
 
-    /* 서비스 카드 */
-    .service-card {
-      border-radius: 1.2rem;
-      border: 1px solid #e5e7eb;
-      padding: 1.6rem 1.7rem;
-      height: 100%;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
-      background: #ffffff;
+    /* ══════════════════════════════════
+       CONTACT
+    ══════════════════════════════════ */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; }
+    .c-row {
+      display: flex; gap: 1.5rem; padding: 2rem; background: #fff;
+      border-radius: var(--r-lg); border: 1px solid var(--c-border); margin-bottom: 1rem;
     }
+    .c-row-icon { font-size: 1.5rem; color: var(--c-accent); }
+    .c-label { font-size: .8rem; font-weight: 800; color: var(--c-muted); text-transform: uppercase; margin-bottom: .25rem; }
+    .c-value { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); }
+    .contact-map { background: #f1f5f9; border-radius: var(--r-lg); min-height: 450px; display: flex; align-items: center; justify-content: center; color: var(--c-muted); border: 1px solid var(--c-border); }
 
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
-      border-color: #cbd5f5;
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer { background: #0a0f1c; padding: 5rem 0; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-brand { font-weight: 800; color: #fff; font-size: 1.25rem; }
+    .footer-copy { font-size: .9rem; }
+    
+    .sp-fab {
+      position: fixed; bottom: 2.5rem; right: 2.5rem; width: 60px; height: 60px;
+      background: var(--c-accent); color: #fff; border-radius: 50%;
+      display: none; align-items: center; justify-content: center; font-size: 1.5rem;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); z-index: 500; transition: .3s;
     }
+    .sp-fab:hover { background: var(--c-accent-dark); transform: scale(1.1); }
+    .sp-fab.visible { display: flex; }
 
-    .service-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #eff4ff;
-      margin-bottom: 1rem;
-    }
-
-    .service-icon i {
-      font-size: 1.2rem;
-      color: #0d6efd;
-    }
-
-    /* 포트폴리오/주요 실적 */
-    .portfolio-item {
-      border-radius: 1.1rem;
-      border: 1px solid #e5e7eb;
-      padding: 1.4rem 1.5rem;
-      background: #ffffff;
-      height: 100%;
-    }
-
-    .portfolio-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 0.2rem 0.7rem;
-      border-radius: 999px;
-      background: #eff6ff;
-      color: #1d4ed8;
-      margin-bottom: 0.7rem;
-    }
-
-    /* 연혁 타임라인 */
-    .timeline {
-      border-left: 2px solid #e5e7eb;
-      padding-left: 1.2rem;
-      margin-left: 0.4rem;
-    }
-
-    .timeline-item {
-      margin-bottom: 1.2rem;
-      position: relative;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -1.3rem;
-      top: 0.35rem;
-      width: 11px;
-      height: 11px;
-      border-radius: 999px;
-      background: #0d6efd;
-    }
-
-    .timeline-year {
-      font-weight: 600;
-      color: #0f172a;
-    }
-
-    /* 연락처 섹션 */
-    .contact-card {
-      border-radius: 1.5rem;
-      border: 1px solid #e5e7eb;
-      padding: 2rem;
-      background: #f9fafb;
-      height: 100%;
-    }
-
-    .contact-info-item {
-      display: flex;
-      gap: 0.8rem;
-      align-items: flex-start;
-      margin-bottom: 0.7rem;
-    }
-
-    .contact-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #e5edff;
-      flex-shrink: 0;
-    }
-
-    .contact-icon i {
-      color: #1d4ed8;
-      font-size: 1rem;
-    }
-
-    /* 인증/허가 액자 카드 */
-    .cert-section-subtitle {
-      max-width: 720px;
-      margin: 0 auto 2rem auto;
-    }
-
-    .frame-card {
-      background: #f9fafb;
-      border-radius: 1.4rem;
-      border: 6px solid #e5e7eb;
-      padding: 1.4rem;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
-      height: 100%;
-    }
-
-    .frame-inner {
-      border-radius: 1rem;
-      border: 1px solid #d1d5db;
-      padding: 1rem 1rem 1.2rem 1rem;
-      background: #ffffff;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      align-items: center;
-      text-align: center;
-    }
-
-    .frame-badge {
-      font-size: 0.75rem;
-      padding: 0.12rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #f3f4ff;
-      color: #4b5563;
-      align-self: flex-start;
-    }
-
-    .frame-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .frame-year {
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    .frame-img {
-      width: 100%;
-      max-width: 210px;
-      aspect-ratio: 3 / 4;
-      border-radius: 0.75rem;
-      border: 1px solid #e5e7eb;
-      object-fit: cover;
-      background-color: #f9fafb;
-      margin-top: 0.4rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .frame-note {
-      font-size: 0.78rem;
-      color: #9ca3af;
-    }
-
-    /* 푸터 */
-    footer {
-      padding: 24px 0;
-      background: #0b1120;
-      color: #9ca3af;
-      font-size: 0.85rem;
-    }
-
-    footer a {
-      color: #e5e7eb;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* 작은 화면 조정 */
-    @media (max-width: 991.98px) {
-      #hero {
-        padding-top: 88px;
-        padding-bottom: 60px;
-      }
+    @media (max-width: 991px) {
+      .sp-nav-links { display: none; }
+      .sp-hamburger { display: flex; }
+      .value-grid, .services-grid, .cert-layout, .portfolio-wrap, .history-layout, .contact-layout { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      .mission-bar { padding: 3rem 1.5rem; }
+      .mission-bar p { font-size: 1.35rem; }
     }
   </style>
 </head>
 <body>
-  <!-- 네비게이션 바 -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#hero">
-        <!-- 로고 이미지가 있으면 여기 <img>로 교체 -->
-        <span>신풍종합개발㈜</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <a class="skip-nav" href="#main-content">본문 바로가기</a>
 
-      <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" href="#about">회사소개</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#services">사업분야</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#certifications">인증/허가</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#portfolio">주요실적</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#history">연혁</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">오시는 길</a>
-          </li>
-        </ul>
-      </div>
+  <nav class="sp-nav" id="spNav">
+    <div class="sp-nav-inner">
+      <a class="sp-brand" href="#hero">
+        <span class="brand-dot"></span>신풍종합개발㈜
+      </a>
+      <ul class="sp-nav-links">
+        <li><a href="#about">회사소개</a></li>
+        <li><a href="#services">사업분야</a></li>
+        <li><a href="#certifications">인증현황</a></li>
+        <li><a href="#portfolio">주요실적</a></li>
+        <li><a href="#history">연혁</a></li>
+        <li><a href="#contact">문의처</a></li>
+      </ul>
+      <button class="sp-hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- 히어로 섹션 -->
-  <section id="hero">
-    <div class="container">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-7 hero-content">
-          <div class="hero-badge mb-3">
-            <i class="bi bi-building"></i>
-            <span>사회적기업 · 장애인표준사업장 · 건물종합관리 전문</span>
+  <div class="sp-mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobile()">회사소개</a>
+    <a href="#services" onclick="closeMobile()">사업분야</a>
+    <a href="#certifications" onclick="closeMobile()">인증현황</a>
+    <a href="#portfolio" onclick="closeMobile()">주요실적</a>
+    <a href="#history" onclick="closeMobile()">연혁</a>
+    <a href="#contact" onclick="closeMobile()">문의처</a>
+  </div>
+
+  <main id="main-content">
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-badges" data-aos="fade-up">
+          <span class="hero-badge"><i class="bi bi-award"></i> 사회적기업 인증</span>
+          <span class="hero-badge"><i class="bi bi-person-check"></i> 장애인표준사업장</span>
+        </div>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+          사람과 건물을 위한<br><em>전문적</em> 사회서비스
+        </h1>
+        <p class="hero-sub" data-aos="fade-up" data-aos-delay="200">
+          신풍종합개발㈜은 20년의 전문성과 사회적 진정성을 바탕으로 <br>
+          고객의 건물을 관리하고 취약계층의 안정적인 자립을 지원합니다.
+        </p>
+        <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+          <a href="#services" class="btn-sp-primary">사업분야 상세보기</a>
+          <a href="#contact" class="btn-sp-ghost">문의하기</a>
+        </div>
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+          <div><span class="hero-stat-num">2004</span><span class="hero-stat-label">창립연도</span></div>
+          <div><span class="hero-stat-num">20+</span><span class="hero-stat-label">전문업력(년)</span></div>
+          <div><span class="hero-stat-num">서울·경기</span><span class="hero-stat-label">서비스지역</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="sp-section">
+      <div class="sp-wrap">
+        <span class="eyebrow" data-aos="fade-up">Our Identity</span>
+        <h2 class="section-title" data-aos="fade-up">함께 상생하는 사회적 파트너</h2>
+        <p class="section-desc" data-aos="fade-up">건물의 수명과 가치를 유지하는 전문 관리를 넘어, 지역사회와 동행하는 기업 철학을 실천합니다.</p>
+        
+        <div class="value-grid">
+          <div class="value-card" data-aos="fade-up">
+            <div class="value-icon"><i class="bi bi-shield-check"></i></div>
+            <h3>신뢰와 전문성</h3>
+            <p>20년간 축적된 데이터와 전문 인력을 통해 차별화된 건물관리 솔루션을 제공합니다.</p>
           </div>
-
-          <h1 class="hero-title">
-            “다 함께, 더 큰 행복”<br />
-            사회적 가치를 실천하는<br />
-            <span class="fw-bold">신풍종합개발㈜</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            신풍종합개발㈜은 건물시설관리, 근로자파견, 시설경비, 건물위생관리, 저수조청소 등
-            건물종합관리 분야를 기반으로 취약계층을 위한 일자리와 사회 서비스를 제공하는 
-            장애인표준사업장(일반형) / 사회적기업입니다.
-          </p>
-
-          <div class="hero-buttons mt-4 d-flex flex-wrap gap-2">
-            <a href="#contact" class="btn btn-light btn-lg">
-              <i class="bi bi-telephone me-2"></i>문의하기
-            </a>
-            <a href="#services" class="btn btn-outline-light btn-lg">
-              <i class="bi bi-arrow-right-circle me-2"></i>사업분야 보기
-            </a>
+          <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="value-icon"><i class="bi bi-heart-fill"></i></div>
+            <h3>사회적 가치</h3>
+            <p>취약계층 고용 창출과 지역사회 돌봄 서비스를 통해 사회 구성원 모두의 행복을 추구합니다.</p>
+          </div>
+          <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="value-icon"><i class="bi bi-layers-half"></i></div>
+            <h3>통합 서비스</h3>
+            <p>시설경비, 미화, 저수조 청소 등 건물 운영에 필요한 모든 영역을 원스톱으로 관리합니다.</p>
           </div>
         </div>
 
-        <div class="col-lg-5 hero-content">
-          <div class="hero-card">
-            <h5>신풍종합개발㈜ 한눈에 보기</h5>
-            <p class="mb-3 small text-white-50">
-              2004년 설립 이후 건물종합관리 분야에서 경험과 노하우를 축적해온 </br>
-              사회적기업이자 장애인표준사업장입니다.
-            </p>
-            <div class="row g-3">
-              <div class="col-6">
-                <div class="hero-stat">
-                  <strong>2004</strong>
-                  <span class="small text-white-50">설립년도</span>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="hero-stat">
-                  <strong>97명</strong>
-                  <span class="small text-white-50">총 인원 (’25.11 기준)</span>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="hero-stat">
-                  <strong>28.8억</strong>
-                  <span class="small text-white-50">매출액 (’25.11 기준)</span>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="hero-stat">
-                  <strong>서울·수도권</strong>
-                  <span class="small text-white-50">주요 운영권역</span>
-                </div>
-              </div>
-            </div>
-            <hr class="border-light border-opacity-25 my-3" />
-            <p class="small mb-0 text-white-50">
-              직원 한 명 한 명을 가족으로 여기며, 함께 성장하는 조직을 지향합니다.
-            </p>
+        <div class="mission-bar" data-aos="fade-up">
+          <p>"우리의 관리가 누군가에게는 안전한 일터가 되고,<br>누군가에게는 따뜻한 보살핌이 됩니다."</p>
+          <small>신풍종합개발㈜ 전 임직원 일동</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="sp-section sp-section-alt">
+      <div class="sp-wrap">
+        <span class="eyebrow" data-aos="fade-up">Business Areas</span>
+        <h2 class="section-title" data-aos="fade-up">6가지 핵심 사업분야</h2>
+        
+        <div class="services-grid">
+          <div class="svc-card" data-aos="fade-up">
+            <div class="svc-num">01</div>
+            <div class="svc-icon"><i class="bi bi-tools"></i></div>
+            <h3>건물시설관리</h3>
+            <p>전기, 소방, 기계설비 등 정밀한 기술 점검으로 시설의 안전을 보장합니다.</p>
+            <div class="svc-tags"><span class="svc-tag">전기</span><span class="svc-tag">기계</span><span class="svc-tag">소방</span></div>
+          </div>
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="svc-num">02</div>
+            <div class="svc-icon"><i class="bi bi-people-fill"></i></div>
+            <h3>근로자파견</h3>
+            <p>고객사에 최적화된 우수한 전문 인력을 배치하여 운영의 효율을 높입니다.</p>
+            <div class="svc-tags"><span class="svc-tag">전문인력</span><span class="svc-tag">맞춤배치</span></div>
+          </div>
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="svc-num">03</div>
+            <div class="svc-icon"><i class="bi bi-eye-fill"></i></div>
+            <h3>시설경비</h3>
+            <p>고객의 안전과 재산을 보호하기 위해 365일 24시간 보안 시스템을 가동합니다.</p>
+            <div class="svc-tags"><span class="svc-tag">보안</span><span class="svc-tag">안전관리</span></div>
+          </div>
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="svc-num">04</div>
+            <div class="svc-icon"><i class="bi bi-brush"></i></div>
+            <h3>건물위생관리</h3>
+            <p>과학적인 청소 공법과 친환경 제품을 사용하여 쾌적한 환경을 유지합니다.</p>
+            <div class="svc-tags"><span class="svc-tag">미화</span><span class="svc-tag">방역</span></div>
+          </div>
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="svc-num">05</div>
+            <div class="svc-icon"><i class="bi bi-droplet-fill"></i></div>
+            <h3>저수조청소</h3>
+            <p>수도법 규정에 따른 정기 소독 및 세척으로 깨끗한 용수 공급을 지원합니다.</p>
+            <div class="svc-tags"><span class="svc-tag">위생</span><span class="svc-tag">수질검사</span></div>
+          </div>
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="svc-num">06</div>
+            <div class="svc-icon"><i class="bi bi-house-heart"></i></div>
+            <h3>돌봄SOS</h3>
+            <p>긴급한 돌봄이 필요한 가구에 가사지원 및 사회 서비스를 제공합니다.</p>
+            <div class="svc-tags"><span class="svc-tag">가사지원</span><span class="svc-tag">사회복지</span></div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 회사 소개 -->
-  <section id="about">
-    <div class="container">
-      <div class="row align-items-start g-4">
-        <div class="col-lg-6">
-          <h2 class="section-title">회사소개</h2>
-          <p class="section-subtitle">About Us</p>
-
-          <div class="about-highlight">
-            <p class="mb-1 fw-semibold">
-              “취약계층을 위한 사회 서비스와 양질의 일자리를 통해
-              사회적 경제의 가치를 실현하는 기업, 신풍종합개발㈜입니다.”
-            </p>
-          </div>
-
-          <p class="mb-3">
-            신풍종합개발㈜은 건물시설관리업, 근로자파견업, 시설경비업, 청소·소독·저수조청소 등 
-            종합 건물관리 서비스를 제공하는 전문 기업입니다. 
-            특히 장애인 고용과 사회서비스 제공을 통해 사회적 가치 창출에 앞장서는 
-            사회적기업이자 장애인표준사업장으로 성장해 왔습니다.
-          </p>
-          <p class="mb-3">
-            “다 함께, 더 큰 행복”이라는 비전 아래, 고객의 자산 가치를 높이고
-            지역사회와 함께 성장하는 지속 가능한 경영을 추구합니다.
-          </p>
-        </div>
-
-        <div class="col-lg-5 offset-lg-1">
-          <div class="row g-3">
-            <div class="col-6">
-              <div class="border rounded-4 p-3 h-100">
-                <p class="mb-1 small text-muted">법인명</p>
-                <p class="mb-0 fw-semibold">신풍종합개발 주식회사</p>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="border rounded-4 p-3 h-100">
-                <p class="mb-1 small text-muted">대표자</p>
-                <p class="mb-0 fw-semibold">유명숙</p>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="border rounded-4 p-3 h-100">
-                <p class="mb-1 small text-muted">설립일</p>
-                <p class="mb-0 fw-semibold">
-                  2004년 3월 29일 (개인) <br />2010년 1월 1일 (법인 전환)
-                </p>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="border rounded-4 p-3 h-100">
-                <p class="mb-1 small text-muted">주요사업분야</p>
-                <p class="mb-0 fw-semibold small">
-                  건물시설관리, 근로자파견, 시설경비, <br /> 미화, 소독, 저수조청소<br />
-                </p>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="border rounded-4 p-3 h-100">
-                <p class="mb-1 small text-muted">주소</p>
-                <p class="mb-0 fw-semibold">
-                  (07995) 서울특별시 양천구 안양천로 1131,<br />
-                            LT삼보 지식산업센터 913호
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 사업분야 -->
-  <section id="services" class="bg-light">
-    <div class="container">
-      <h2 class="section-title text-center">사업분야</h2>
-      <p class="section-subtitle text-center">Services</p>
-
-      <div class="row g-4">
-        <!-- 건물종합관리 -->
-        <div class="col-md-4">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="bi bi-building-check"></i>
-            </div>
-            <h5 class="fw-semibold mb-2">건물종합관리</h5>
-            <p class="mb-2 small text-muted">건물·공동주택 관리</p>
-            <p class="mb-0 small">
-              학교·오피스·상가·병원 등 다양한 시설의 청소, 경비, 시설 유지보수,
-              조경관리 등 통합 건물관리 서비스를 제공합니다.
-            </p>
-          </div>
-        </div>
-
-        <!-- 시설경비 & 근로자파견 -->
-        <div class="col-md-4">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="bi bi-shield-lock"></i>
-            </div>
-            <h5 class="fw-semibold mb-2">시설경비 · 근로자파견</h5>
-            <p class="mb-2 small text-muted">안전·보안 · 인력지원</p>
-            <p class="mb-0 small">
-              시설경비업 및 근로자파견업 허가를 기반으로, 범죄 사전 예방과
-              재산 보호를 위한 전문 경비 인력과 고객 맞춤형 파견 인력을 제공합니다.
-            </p>
-          </div>
-        </div>
-
-        <!-- 위생관리/저수조/소독/SOS -->
-        <div class="col-md-4">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="bi bi-droplet-half"></i>
-            </div>
-            <h5 class="fw-semibold mb-2">위생관리 · 돌봄SOS</h5>
-            <p class="mb-2 small text-muted">저수조청소 · 소독 · 주거편의</p>
-            <p class="mb-0 small">
-              건물위생관리, 저수조청소, 소독업 신고를 바탕으로 LH 임대주택 청소,
-              서울시 돌봄SOS 주거편의 서비스 등 다양한 공공·주거 위생서비스를 수행합니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 인증/허가 (액자 카드 형식) -->
-  <section id="certifications">
-    <div class="container">
-      <h2 class="section-title text-center">인증/허가</h2>
-      <p class="section-subtitle text-center cert-section-subtitle">
-        신풍종합개발㈜은 여성기업, 사회적기업, 장애인표준사업장 등 다양한 인증과
-        각종 사업 분야에 대한 허가·등록을 통해 신뢰받는 파트너로 성장하고 있습니다.
-      </p>
-
-      <!-- 상단: 주요 인증 & 포상 -->
-      <h6 class="fw-semibold mb-3">주요 인증 및 포상</h6>
-      <div class="row g-4 mb-4">
-        <!-- 사회적기업 인증 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">인증</span>
-              <div class="frame-title">사회적기업 인증서</div>
-              <div class="frame-year">2020년</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%EC%82%AC%ED%9A%8C%EC%A0%81%EA%B8%B0%EC%97%85+%EC%9D%B8%EC%A6%9D%EC%84%9C"
-                alt="사회적기업 인증서 예시"
-              />
-              <div class="frame-note">고용 취약계층 일자리 창출 및 사회서비스 제공</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 우수 사회적기업 인증 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">인증</span>
-              <div class="frame-title">우수 사회적기업 인증서</div>
-              <div class="frame-year">2024년</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%EC%9A%B0%EC%88%98+%EC%82%AC%ED%9A%8C%EC%A0%81%EA%B8%B0%EC%97%85"
-                alt="우수 사회적기업 인증서 예시"
-              />
-              <div class="frame-note">사회적 가치와 경영성과를 인정받은 우수기업</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 장애인표준사업장 인증 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">인증</span>
-              <div class="frame-title">장애인표준사업장 인증서</div>
-              <div class="frame-year">2025년</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%EC%9E%A5%EC%95%A0%EC%9D%B8%ED%91%9C%EC%A4%80%EC%82%AC%EC%97%85%EC%9E%A5"
-                alt="장애인표준사업장 인증서 예시"
-              />
-              <div class="frame-note">장애인 친화적 고용환경 구축 및 양질의 일자리 제공</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 안전보건/표창 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">포상 · 인증</span>
-              <div class="frame-title">서울시 표창 · ISO 45001</div>
-              <div class="frame-year">2017년 · 2021년 등</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%ED%91%9C%EC%B0%BD+%2B+ISO+45001"
-                alt="표창 및 ISO 인증 예시"
-              />
-              <div class="frame-note">
-                방역·감염병 예방, 돌봄SOS 공로 및 안전보건경영시스템(ISO 45001) 인증
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 하단: 등록 · 허가 · 신고 현황 -->
-      <h6 class="fw-semibold mb-3">등록 · 허가 · 신고 현황</h6>
-      <div class="row g-4">
-        <!-- 건물위생/저수조/소독 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">신고</span>
-              <div class="frame-title">건물위생관리업 · 저수조청소업 · 소독업</div>
-              <div class="frame-year">2006년</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%EA%B1%B4%EB%AC%BC%EC%9C%84%EC%83%9D%EA%B4%80%EB%A6%AC+%EB%93%B1"
-                alt="건물위생관리/저수조/소독 신고증 예시"
-              />
-              <div class="frame-note">
-                법정 기준에 따른 위생·저수조·소독 전문 업체로 신고 완료
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 주택관리업 등록 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">등록</span>
-              <div class="frame-title">주택관리업 등록</div>
-              <div class="frame-year">2023년</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%EC%A3%BC%ED%83%9D%EA%B4%80%EB%A6%AC%EC%97%85+%EB%93%B1%EB%A1%9D"
-                alt="주택관리업 등록증 예시"
-              />
-              <div class="frame-note">공동주택 관리 전문성 및 책임성을 공인받은 등록업체</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 시설경비업/근로자파견업 허가 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">허가</span>
-              <div class="frame-title">시설경비업 · 근로자파견업</div>
-              <div class="frame-year">2012년 · 2015년</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%EA%B2%BD%EB%B9%84+%2B+%ED%8C%8C%EA%B2%AC+%ED%97%88%EA%B0%80"
-                alt="시설경비업·근로자파견업 허가증 예시"
-              />
-              <div class="frame-note">
-                법적 기준을 충족한 경비·파견 전문 인력 운영 기반 확보
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 직접생산확인증명서 -->
-        <div class="col-md-6 col-lg-3">
-          <div class="frame-card">
-            <div class="frame-inner">
-              <span class="frame-badge">직접생산</span>
-              <div class="frame-title">건물청소 · 시설물경비 서비스</div>
-              <div class="frame-year">직접생산확인증명서</div>
-              <img
-                class="frame-img"
-                src="https://via.placeholder.com/300x400?text=%EC%A7%81%EC%A0%91%EC%83%9D%EC%82%B0+%ED%99%95%EC%9D%B8"
-                alt="직접생산확인증명서 예시"
-              />
-              <div class="frame-note">
-                건물청소·시설물경비 서비스를 직접 수행하는 전문 사업장으로 인정
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>      
-    </div>
-  </section>
-
-  <!-- 주요실적 / 포트폴리오 (간략 예시) -->
-  <section id="portfolio">
-    <div class="container">
-      <h2 class="section-title">주요실적</h2>
-      <p class="section-subtitle">
-        대형 오피스빌딩, 병원, 학교, 아파트, 물류센터 등 서울·수도권 전역의 다양한 시설에서
-        건물관리·저수조청소·돌봄SOS 사업을 수행하고 있습니다.
-      </p>
-
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="portfolio-item">
-            <span class="portfolio-tag">건물관리</span>
-            <h5 class="fw-semibold mb-1">종로타워 · 삼성생명 서초타워 등</h5>
-            <p class="small text-muted mb-1">서울 주요 오피스·타워 시설</p>
-            <p class="mb-0 small">
-              종로타워, 삼성생명 서초타워, JTBC운영센터, 나이스(NICE) 본사 1사옥 등
-              주요 랜드마크 건물의 시설·청소·위생 관리를 수행하고 있습니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="portfolio-item">
-            <span class="portfolio-tag">저수조청소</span>
-            <h5 class="fw-semibold mb-1">서남병원 · 신성미소지움 아파트 등</h5>
-            <p class="small text-muted mb-1">병원·공동주택 물탱크 위생관리</p>
-            <p class="mb-0 small">
-              서남병원, JTBC운영센터, 종로타워 등 다수의 병원·업무시설·주거시설에서
-              정기적인 저수조청소를 통해 안전한 급수환경을 유지하고 있습니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="portfolio-item">
-            <span class="portfolio-tag">학교·돌봄SOS</span>
-            <h5 class="fw-semibold mb-1">서울 시내 초·중·고 및 주거편의 사업</h5>
-            <p class="small text-muted mb-1">학교시설관리 · 서울시 돌봄SOS</p>
-            <p class="mb-0 small">
-              동호초, 경수초, 공항고, 염강초 등 다수 학교의 급식도우미·시설관리와
-              양천·강서·종로·광진·마포구 돌봄SOS 주거편의(청소·방역·간단보수) 사업을
-              수행하고 있습니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 연혁 -->
-  <section id="history" class="bg-light">
-    <div class="container">
-      <h2 class="section-title">연혁</h2>
-      <p class="section-subtitle">History</p>
-
-      <div class="row">
-        <div class="col-lg-7">
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-year">2025</div>
-              <p class="mb-0 small text-muted">
-                장애인표준사업장 인증 획득
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2024</div>
-              <p class="mb-0 small text-muted">
-                우수 사회적기업 인증
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2023</div>
-              <p class="mb-0 small text-muted">
-                주택관리업 등록, 공공·민간 통합 건물관리 영역 확대
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2020</div>
-              <p class="mb-0 small text-muted">
-                사회적기업 인증, 서울시 돌봄SOS센터 서비스(청소·방역) 업무협약
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2015</div>
-              <p class="mb-0 small text-muted">
-                시설경비업 허가, 방역·감염병 예방 관련 서울시 표창
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2012</div>
-              <p class="mb-0 small text-muted">
-                근로자파견업 허가
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2011</div>
-              <p class="mb-0 small text-muted">
-                여성기업 인증
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2006</div>
-              <p class="mb-0 small text-muted">
-                건물위생관리업·저수조청소업·소독업 신고
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2010</div>
-              <p class="mb-0 small text-muted">
-                신풍종합개발㈜ 법인 전환
-              </p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2004</div>
-              <p class="mb-0 small text-muted">
-                신풍종합개발 설립
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5 mt-4 mt-lg-0">
-          <p class="mb-2 fw-semibold">핵심 가치</p>
-          <ul class="small text-muted mb-3">
-            <li>사회적 가치 창출과 지속 가능한 경영</li>
-            <li>취약계층·장애인 일자리 제공을 통한 포용적 성장</li>
-            <li>고객과 지역사회가 신뢰하는 건물종합관리 파트너</li>
-          </ul>
-          <p class="small mb-0">
-            신풍종합개발㈜은 “다 함께, 더 큰 행복”이라는 비전 아래 </br>
-            사회적 경제의 가치를 높이는 모델을 지속적으로 확장하고 있습니다.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 연락처 / 오시는 길 -->
-  <section id="contact">
-    <div class="container">
-      <h2 class="section-title">오시는 길 & 연락처</h2>
-      <p class="section-subtitle">Contact</p>
-
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <div class="contact-card h-100">
-            <h5 class="fw-semibold mb-3">문의처</h5>
-
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <i class="bi bi-geo-alt"></i>
-              </div>
+    <section id="certifications" class="sp-section sp-section-dark">
+      <div class="sp-wrap">
+        <span class="eyebrow" data-aos="fade-up">Certifications</span>
+        <h2 class="section-title" data-aos="fade-up">공인된 신뢰성</h2>
+        
+        <div class="cert-layout">
+          <div class="cert-list" data-aos="fade-right">
+            <div class="cert-item">
+              <div class="cert-icon"><i class="bi bi-patch-check"></i></div>
               <div>
-                <div class="small text-muted">주소</div>
-                <div class="fw-semibold small">
-                  (07995) 서울특별시 양천구 안양천로 1131,<br />
-                            LT삼보 지식산업센터 913호
-                </div>
+                <h4>고용노동부 인증 사회적기업</h4>
+                <p>일자리 창출 및 지역사회 기여 공헌도를 정부로부터 인정받은 기업입니다.</p>
               </div>
             </div>
-
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <i class="bi bi-telephone"></i>
-              </div>
+            <div class="cert-item">
+              <div class="cert-icon"><i class="bi bi-person-workspace"></i></div>
               <div>
-                <div class="small text-muted">전화</div>
-                <div class="fw-semibold small">TEL. 02-716-9008</div>
+                <h4>장애인표준사업장 인증</h4>
+                <p>장애인 근로자가 편안하고 안전하게 일할 수 있는 환경을 구축하고 있습니다.</p>
               </div>
             </div>
-
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <i class="bi bi-printer"></i>
-              </div>
-              <div>
-                <div class="small text-muted">FAX</div>
-                <div class="fw-semibold small">FAX. 02-2607-9008</div>
-              </div>
-            </div>
-
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <i class="bi bi-envelope"></i>
-              </div>
-              <div>
-                <div class="small text-muted">이메일</div>
-                <div class="fw-semibold small">
-                  <a href="mailto:sm778803@naver.com" class="text-decoration-none">
-                    sm778803@naver.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <i class="bi bi-globe2"></i>
-              </div>
-              <div>
-                <div class="small text-muted">홈페이지</div>
-                <div class="fw-semibold small">
-                  <a href="http://www.shinpoong.biz" target="_blank" class="text-decoration-none">
-                    www.shinpoong.biz
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="contact-info-item">
-              <div class="contact-icon">
-                <i class="bi bi-clock"></i>
-              </div>
-              <div>
-                <div class="small text-muted">업무시간</div>
-                <div class="fw-semibold small">
-                  평일 09:00 ~ 18:00 (주말·공휴일 휴무)
-                </div>
-              </div>
-            </div>
-
-            <hr class="my-3" />
-            <p class="small mb-0 text-muted">
-              제휴 및 프로젝트 문의는 대표번호 또는 이메일로 연락 주시면 </br>
-              담당자가 신속하게 안내드리겠습니다.
-            </p>
           </div>
-        </div>
-
-        <div class="col-lg-6">
-          <!-- 지도 자리: 실제 사용 시 네이버/카카오/구글 지도 embed 코드 삽입 -->
-          <div class="border rounded-4 h-100 d-flex flex-column justify-content-center align-items-center p-4 bg-light">
-            <p class="mb-2 fw-semibold">지도 / 오시는 길 안내</p>
-            <p class="mb-3 small text-muted text-center">
-               <strong><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25308.38983968502!2d126.85080221562498!3d37.5421337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9fa358c4354d%3A0xccf7fafd2354bc3!2z7Iug66qp64-Z7JetIExU7IK867O0IOyngOyLneyCsOyXheyEvO2EsCBNLk9L!5e0!3m2!1sko!2skr!4v1764027354451!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></strong>
-              </p>
-            <p class="mb-0 small text-muted text-center">
-              
-            </p>
+          <div class="cert-badge-panel" data-aos="fade-left">
+            <i class="bi bi-award-fill"></i>
+            <span>Verified<br>Professional Partner</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 푸터 -->
+    <section id="portfolio" class="sp-section">
+      <div class="sp-wrap">
+        <span class="eyebrow" data-aos="fade-up">Portfolio</span>
+        <h2 class="section-title" data-aos="fade-up">함께해온 주요 실적</h2>
+        
+        <div class="portfolio-wrap">
+          <div data-aos="fade-up">
+            <p class="section-desc mb-4">전국 주요 공공기관 및 대규모 주거단지, 복지재단 등 다양한 파트너들과 함께 신뢰를 쌓아왔습니다.</p>
+            <div class="client-pills">
+              <span class="client-pill">서울특별시청</span><span class="client-pill">공공기관</span><span class="client-pill">종합병원</span>
+              <span class="client-pill">교육시설</span><span class="client-pill">지식산업센터</span><span class="client-pill">복지관</span>
+            </div>
+          </div>
+          <div class="row g-4" data-aos="fade-up">
+            <div class="col-6"><div class="stat-card"><span class="n">20년</span><span class="l">경험</span></div></div>
+            <div class="col-6"><div class="stat-card"><span class="n">500+</span><span class="l">프로젝트</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="history" class="sp-section sp-section-alt">
+      <div class="sp-wrap">
+        <div class="history-layout">
+          <div data-aos="fade-right">
+            <span class="eyebrow">Our Journey</span>
+            <h2 class="section-title">주요 연혁</h2>
+          </div>
+          <div class="timeline" data-aos="fade-left">
+            <div class="tl-item">
+              <div class="tl-year">2004 — 창립</div>
+              <span class="tl-event">신풍종합개발㈜ 설립 및 영업 개시</span>
+              <span class="tl-event">건물위생 및 관리업 인허가 취득</span>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2014 — 인증</div>
+              <span class="tl-event">장애인 표준사업장 인증 획득</span>
+              <span class="tl-event">취약계층 고용 창출 체계 구축</span>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2017 — 성장</div>
+              <span class="tl-event">고용노동부 인증 사회적기업 승인</span>
+              <span class="tl-event">지역사회 돌봄SOS 서비스 개시</span>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">Present — 혁신</div>
+              <span class="tl-event">디지털 통합 관리 시스템 도입</span>
+              <span class="tl-event">양천구 LT삼보 지식산업센터 사무실 이전</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="sp-section">
+      <div class="sp-wrap">
+        <span class="eyebrow" data-aos="fade-up">Contact Us</span>
+        <h2 class="section-title" data-aos="fade-up">오시는 길</h2>
+        
+        <div class="contact-layout">
+          <div class="contact-rows" data-aos="fade-right">
+            <div class="c-row">
+              <div class="c-row-icon"><i class="bi bi-geo-alt"></i></div>
+              <div><div class="c-label">Address</div><div class="c-value">서울특별시 양천구 안양천로 1131, 913호</div></div>
+            </div>
+            <div class="c-row">
+              <div class="c-row-icon"><i class="bi bi-telephone"></i></div>
+              <div><div class="c-label">Phone</div><div class="c-value">02-716-9008</div></div>
+            </div>
+            <div class="c-row">
+              <div class="c-row-icon"><i class="bi bi-envelope"></i></div>
+              <div><div class="c-label">Email</div><div class="c-value">sp9008@naver.com</div></div>
+            </div>
+          </div>
+          <div class="contact-map" data-aos="fade-left">
+            <p>지도 데이터 로딩 중...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-      <div>
-        © <span id="year"></span> 신풍종합개발㈜. All Rights Reserved.
-      </div>
-      <div class="d-flex flex-column flex-md-row gap-2 gap-md-3">
-        <span>대표자 유명숙</span>
-        <span>Tel. 02-716-9008</span>
-        <span>www.shinpoong.biz</span>
-      </div>
+    <div class="footer-inner">
+      <div class="footer-brand">신풍종합개발㈜</div>
+      <div class="footer-copy">© 2024 Shinpoong General Development. All Rights Reserved.</div>
     </div>
   </footer>
 
-  <!-- JS: Bootstrap & 간단 스크립트 -->
+  <a href="#hero" class="sp-fab" id="fab"><i class="bi bi-arrow-up"></i></a>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    // 현재 연도 자동 표시
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // 스크롤 시 네비게이션 스타일 변경
-    const navbar = document.querySelector(".navbar");
-    function handleScroll() {
-      if (window.scrollY > 40) {
-        navbar.classList.add("navbar-scrolled");
-      } else {
-        navbar.classList.remove("navbar-scrolled");
-      }
-    }
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    // 모바일 메뉴에서 클릭 시 자동 닫기
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-    const navbarCollapse = document.getElementById("mainNavbar");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (window.innerWidth < 992) {
-          const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-          bsCollapse && bsCollapse.hide();
-        }
-      });
+    AOS.init({ duration: 800, once: true });
+    
+    const nav = document.getElementById('spNav');
+    const fab = document.getElementById('fab');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+      fab.classList.toggle('visible', window.scrollY > 400);
     });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() { mobileMenu.classList.remove('open'); }
   </script>
 </body>
 </html>
-
