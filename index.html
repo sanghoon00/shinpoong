@@ -1,401 +1,607 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>신풍종합개발㈜</title>
-  <meta name="description" content="건물시설관리, 시설경비, 저수조청소, 돌봄SOS 등 종합 건물관리 서비스를 제공하는 사회적기업입니다." />
-
-  <!-- ✅ 파비콘 (경로: ./images/ 로 통일) -->
-  <link rel="icon" type="image/png" href="./images/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
-  <link rel="shortcut icon" href="./images/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="신풍" />
-  <link rel="manifest" href="./images/site.webmanifest" />
-
-  <!-- Fonts: Pretendard -->
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-  <!-- AOS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
   <style>
+    /* ── 디자인 토큰 & 다크모드 시스템 ── */
     :root {
-      --c-bg:         #ffffff;
-      --c-bg-alt:     #f8fafc;
-      --c-bg-card:    #ffffff;
-      --c-bg-dark:    #0f172a;
-      --c-primary:    #1e293b;
-      --c-accent:     #10b981;
-      --c-accent-dark: #059669;
-      --c-text:       #1e293b;
-      --c-muted:      #64748b;
-      --c-border:     #e2e8f0;
-      --ff-sans:      "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      --r-lg:         1rem;
-      --r-md:         0.75rem;
-      --shadow-sm:    0 1px 3px rgba(0,0,0,0.05);
-      --shadow-md:    0 10px 25px -5px rgba(0,0,0,0.05);
-      --shadow-lg:    0 20px 50px -12px rgba(0,0,0,0.1);
-      --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+      --sage-500: #4fa876;
+      --leaf-500: #5ec787;
+      --mint-500: #7fd697;
+      
+      --bg-body: #fafcfa;
+      --bg-section-1: #f0faf5;
+      --bg-section-2: #f5fbf8;
+      --bg-section-dark: #0d3b2c;
+      --bg-section-darker: #1a5e47;
+      
+      --bg-surface: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.7);
+      
+      --text-main: #0d3b2c;
+      --text-muted: #5a8068;
+      --text-inverse: #ffffff;
+      --text-inverse-muted: #c5e6d8;
+      
+      --border: #d0e8dd;
+      --border-dark: rgba(94, 199, 135, 0.2);
+      
+      --accent: var(--sage-500);
+      
+      --shadow-sm: 0 4px 12px rgba(13, 59, 44, 0.05);
+      --shadow-md: 0 12px 32px rgba(13, 59, 44, 0.08);
+      --shadow-lg: 0 24px 64px rgba(13, 59, 44, 0.12);
+      --nav-bg: rgba(240, 250, 245, 0.98);
+
+      /* Border radius */
+      --r:    0.85rem;
+      --r-lg: 1.5rem;
+      --r-xl: 2rem;
+
+      /* Easing */
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* 무채색 톤 맵 필터 */
+      --map-filter: grayscale(35%) contrast(1.05) brightness(1.02);
+    }
+
+    [data-theme="dark"] {
+      --bg-body: #0a110e;
+      --bg-section-1: #0e1814;
+      --bg-section-2: #121d18;
+      --bg-section-dark: #070d0a;
+      --bg-section-darker: #0a110e;
+      
+      --bg-surface: #16241e;
+      --bg-glass: rgba(22, 36, 30, 0.7);
+      
+      --text-main: #e8f0ec;
+      --text-muted: #9ab3a5;
+      --text-inverse: #e8f0ec;
+      --text-inverse-muted: #9ab3a5;
+      
+      --border: #23382d;
+      --border-dark: rgba(255, 255, 255, 0.1);
+      
+      --accent: var(--mint-500);
+      
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.5);
+      --nav-bg: rgba(10, 17, 14, 0.95);
+      
+      --map-filter: invert(90%) hue-rotate(180deg) grayscale(20%) brightness(0.9) contrast(1.1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: clamp(14px, 2vw, 16px); }
     body {
-      font-family: var(--ff-sans);
-      background: var(--c-bg);
-      color: var(--c-text);
-      line-height: 1.6;
-      letter-spacing: -0.02em;
-      overflow-x: hidden;
+      font-family: 'Pretendard GOV', -apple-system, sans-serif;
+      background-color: var(--bg-body); color: var(--text-main);
+      line-height: 1.65; letter-spacing: -0.02em;
+      transition: background-color 0.3s ease, color 0.3s ease; overflow-x: hidden;
     }
+    img { transition: filter 0.3s ease; }
+    [data-theme="dark"] img:not(.no-filter) { filter: brightness(0.85); }
 
-    .skip-nav {
-      position: absolute; top: -100%; left: 50%;
-      transform: translateX(-50%);
-      background: var(--c-bg-dark); color: #fff;
-      padding: .5rem 1.5rem; border-radius: 0 0 8px 8px;
-      font-size: .9rem; z-index: 9999; transition: top .2s;
-    }
-    .skip-nav:focus { top: 0; }
+    /* ── NAVBAR & THEME SWITCH ── */
+    .sp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: all 0.35s ease; background: transparent; }
+    .sp-nav.scrolled { background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+    .sp-nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .sp-brand { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 0.65rem; }
+    .sp-brand img { height: 34px; width: auto; }
+    .sp-brand-text { font-family: 'Pretendard GOV', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text-main); }
+    
+    .nav-controls { display: flex; align-items: center; gap: 1.5rem; }
+    .sp-nav-links { display: flex; list-style: none; gap: 0.5rem; margin: 0; }
+    .sp-nav-links a { position: relative; display: block; padding: 0.5rem 0.95rem; font-size: 0.9rem; font-weight: 600; color: var(--text-main); text-decoration: none; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+    .sp-nav-links a:hover, .sp-nav-links a.active { background: var(--bg-surface); color: var(--accent); }
+    .nav-cta { background: var(--accent) !important; color: #fff !important; font-weight: 800 !important; box-shadow: var(--shadow-sm); }
+    .nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-    /* NAVBAR */
-    .sp-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: #ffffff;
-      border-bottom: 1px solid var(--c-border);
-      transition: all 0.3s var(--ease);
-    }
-    .sp-nav.scrolled { padding: 0.5rem 0; box-shadow: var(--shadow-sm); }
-    .sp-nav-inner {
-      max-width: 1240px; margin: 0 auto; padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 72px;
-    }
-    .sp-brand {
-      font-size: 1.2rem; font-weight: 800;
-      color: var(--c-primary); text-decoration: none;
-      display: flex; align-items: center; gap: .75rem;
-    }
-    .sp-brand img {
-      height: 38px; width: auto;
-      filter: drop-shadow(0 1px 2px rgba(37, 99, 168, 0.08));
-      transition: transform 0.3s var(--ease);
-    }
-    .sp-brand:hover img { transform: scale(1.05); }
-    .sp-nav-links {
-      display: flex; align-items: center; list-style: none; gap: 0.5rem; margin: 0;
-    }
-    .sp-nav-links a {
-      display: block; padding: .5rem 1rem;
-      font-size: 0.95rem; font-weight: 600;
-      color: var(--c-muted); text-decoration: none;
-      transition: all .2s var(--ease);
-    }
-    .sp-nav-links a:hover, .sp-nav-links a.active { color: var(--c-accent); }
-    .sp-hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer;
-    }
-    .sp-hamburger span { display: block; width: 24px; height: 2px; background: var(--c-primary); border-radius: 2px; }
-    .sp-mobile-menu {
-      display: none; position: fixed; top: 72px; left: 0; right: 0;
-      background: var(--c-bg); border-bottom: 1px solid var(--c-border);
-      padding: 1.5rem 2rem; z-index: 999;
-    }
-    .sp-mobile-menu.open { display: block; }
-    .sp-mobile-menu a {
-      display: block; padding: 1rem 0;
-      color: var(--c-text); text-decoration: none;
-      font-size: 1.1rem; font-weight: 600;
-      border-bottom: 1px solid var(--c-bg-alt);
-    }
+    .theme-switch { background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: var(--shadow-sm); }
+    .theme-switch:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-switch .bi-sun-fill { display: none; }
+    [data-theme="dark"] .theme-switch .bi-moon-stars-fill { display: none; }
+    [data-theme="dark"] .theme-switch .bi-sun-fill { display: block; color: #f1c40f; }
 
-    /* SECTIONS */
+    .sp-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .sp-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-main); border-radius: 2px; }
+    .sp-mobile-menu { position: fixed; top: 76px; left: 0; right: 0; background: var(--bg-surface); border-bottom: 1px solid var(--border); padding: 0 2rem; z-index: 999; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+    .sp-mobile-menu.open { max-height: 600px; padding: 1.25rem 2rem; }
+    .sp-mobile-menu a { display: block; padding: 0.9rem 0; color: var(--text-main); text-decoration: none; font-size: 1rem; font-weight: 600; border-bottom: 1px solid var(--border); }
+
+    /* ── LAYOUT & TYPOGRAPHY ── */
+    .sp-wrap { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
     .sp-section { padding: 120px 0; position: relative; }
-    .sp-section-alt { background: var(--c-bg-alt); }
-    .sp-section-dark { background: var(--c-bg-dark); color: #fff; }
-    .sp-wrap { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
-    .eyebrow {
-      font-size: .85rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--c-accent); margin-bottom: 1rem; display: block;
-    }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 800; line-height: 1.25;
-      color: var(--c-primary); margin-bottom: 1.5rem;
-    }
-    .sp-section-dark .section-title { color: #fff; }
-    .section-desc { font-size: 1.1rem; color: var(--c-muted); max-width: 600px; line-height: 1.7; }
-    .sp-section-dark .section-desc { color: #94a3b8; }
+    .sp-section-light { background: var(--bg-section-1); }
+    .sp-section-cream { background: var(--bg-section-2); }
+    .sp-section-dark { background: var(--bg-section-dark); color: var(--text-inverse); }
+    .sp-section-darker { background: var(--bg-section-darker); color: var(--text-inverse); }
 
-    /* HERO */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      display: flex; align-items: center;
-      position: relative; overflow: hidden; padding-top: 80px;
+    .eyebrow { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; display: block; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 600; line-height: 1.15; letter-spacing: 0.02em; color: var(--text-main); margin-bottom: 1.25rem; }
+    .section-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; line-height: 1.85; }
+    
+    .sp-section-dark .section-title, .sp-section-darker .section-title { color: var(--text-inverse) !important; }
+    .sp-section-dark .section-desc, .sp-section-darker .section-desc { color: var(--text-inverse-muted) !important; }
+    .sp-section-dark .eyebrow, .sp-section-darker .eyebrow { color: var(--accent) !important; }
+    .accent-line { width: 44px; height: 3px; background: linear-gradient(90deg, var(--accent), var(--mint-500)); border-radius: 2px; margin-bottom: 1.75rem; }
+
+    /* ── 애니메이션 ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── HERO ── */
+    #hero { min-height: 100vh; background: var(--bg-section-1); display: flex; align-items: center; padding: 120px 0 80px; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hero-left { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .hero-badge { padding: 0.35rem 1rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 100px; font-size: 0.8rem; color: var(--accent); font-weight: 700; box-shadow: var(--shadow-sm); }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 4.5vw, 4.6rem); font-weight: 600; line-height: 1.1; color: var(--text-main); margin-bottom: 1.5rem; letter-spacing: -0.02em; animation: fadeUp .8s var(--ease) .1s both; }
+    .hero-title em { font-style: normal; font-weight: 700; color: var(--accent); }
+    .hero-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 480px; line-height: 1.8; margin-bottom: 2.5rem; animation: fadeUp .8s var(--ease) .2s both; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.85rem; animation: fadeUp .8s var(--ease) .3s both; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background: var(--text-main); color: var(--bg-body); font-size: 1rem; font-weight: 800; border-radius: var(--r); text-decoration: none; padding: 0.85rem 2.2rem; min-height: 52px; transition: all 0.3s ease; box-shadow: var(--shadow-sm); }
+    [data-theme="dark"] .btn-primary { background: var(--accent); color: var(--bg-body); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); filter: brightness(1.1); }
+    .btn-ghost { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 2.2rem; min-height: 52px; background: transparent; color: var(--text-muted); font-size: 0.97rem; font-weight: 700; border-radius: var(--r); text-decoration: none; border: 1.5px solid var(--border); transition: all 0.25s; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--bg-surface); }
+    .hero-right { animation: fadeUp .9s var(--ease) .25s both; }
+    .hero-panel { background: var(--bg-glass); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 1.75rem 2.25rem; box-shadow: var(--shadow-md); backdrop-filter: blur(12px); }
+    .hero-panel-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); display: block; }
+    .hero-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 1.25rem; }
+    .hero-stat-box { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--r); padding: 0.8rem 0.25rem; text-align: center; transition: all 0.3s ease; }
+    .hero-stat-box:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .hsn { font-family: 'Poppins', sans-serif; font-size: 1.7rem; font-weight: 400; color: var(--accent); display: block; line-height: 1; letter-spacing: 0; }
+    .hsl { font-size: 0.7rem; color: var(--text-muted); display: block; margin-top: 0.3rem; font-weight: 600; letter-spacing: -0.03em; }
+    .biz-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: block; text-align: left; margin-bottom: 0.6rem; }
+    .biz-strip, .hero-cert-strip { display: flex; flex-direction: column; gap: 0.5rem; }
+    .biz-pill, .hero-cert { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 1.1rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--r); transition: all 0.25s ease; width: 100%; }
+    .biz-pill:hover, .hero-cert:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .biz-pill i, .hero-cert i { font-size: 1.2rem; color: var(--accent); flex-shrink: 0; }
+    .biz-pill span, .hero-cert span { font-size: 0.85rem; font-weight: 700; color: var(--text-main); line-height: 1.25; }
+
+    /* ── PARTNERS ── */
+    #partners { padding: 100px 0; border-top: 1px solid var(--border); overflow: hidden; position: relative; }
+    .partners-header { text-align: center; margin-bottom: 4rem; position: relative; z-index: 1; }
+    .partners-header .accent-line { margin: 0 auto 1.5rem; }
+    .logo-slider-wrap { overflow: hidden; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .logo-slider-tier { mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); }
+    .logo-track { display: flex; gap: 1.5rem; width: max-content; }
+    .logo-track-l { animation: scrollLeft 45s linear infinite; }
+    .logo-track-r { animation: scrollRight 50s linear infinite; }
+    @keyframes scrollLeft { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @keyframes scrollRight { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+    .logo-card-light { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1rem 2.2rem; height: 88px; min-width: 200px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .logo-card-light img { height: 52px; width: auto; max-width: 180px; object-fit: contain; }
+    .logo-label { font-size: 0.7rem; font-weight: 700; color: var(--text-main); text-align: center; line-height: 1.2; margin-top: -2px; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .value-item { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--bg-surface); transition: all 0.3s; }
+    .value-item:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .vi-icon { width: 46px; height: 46px; flex-shrink: 0; background: var(--bg-section-1); border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--accent); border: 1px solid var(--border); }
+    .value-item h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.4rem; color: var(--text-main); }
+    .value-item p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── SERVICES ── */
+    .svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 4rem; }
+    .svc-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 2.25rem; display: flex; flex-direction: column; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .svc-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-5px); }
+    .svc-num { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 400; color: var(--accent); margin-bottom: 1.5rem; }
+    .svc-icon { font-size: 2rem; color: var(--accent); margin-bottom: 1.25rem; }
+    .svc-card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-main); }
+    .svc-card p { font-size: 0.9rem; color: var(--text-muted); flex: 1; margin-bottom: 1.5rem; line-height: 1.7; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; }
+    .svc-tag { font-size: 0.72rem; padding: 0.22rem 0.7rem; background: var(--bg-section-1); border-radius: 100px; color: var(--accent); font-weight: 700; border: 1px solid var(--border); }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-section-header { margin-bottom: 3.5rem; }
+    .cert-section-header .section-title { margin-bottom: 0; }
+
+    /* cert-highlight — 2컬럼 레이아웃 */
+    .cert-highlight {
+      margin-top: 0; margin-bottom: 0;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative; z-index: 1; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
     }
-    #hero::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    /* 좌측 — 메인 콘텐츠 */
+    .cert-highlight-left {
+      padding: 3rem 3rem 3rem 3rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-    .hero-inner { max-width: 1240px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; width: 100%; }
-    .hero-badges { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2.5rem; }
-    .hero-badge {
-      padding: .4rem 1.2rem; background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
-      font-size: .85rem; color: #cbd5e1; font-weight: 500;
+    /* 우측 — 보조 정보 */
+    .cert-highlight-right {
+      padding: 3rem 3rem 3rem 3rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: rgba(79,168,118,0.08);
     }
-    .hero-badge i { color: var(--c-accent); margin-right: 6px; }
-    .hero-title { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; line-height: 1.1; color: #fff; margin-bottom: 2rem; }
-    .hero-title em { font-style: normal; color: var(--c-accent); }
-    .hero-sub { font-size: 1.25rem; color: #94a3b8; max-width: 650px; line-height: 1.8; margin-bottom: 3.5rem; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .btn-sp-primary {
-      padding: 1rem 2.5rem; background: var(--c-accent); color: #fff;
-      font-size: 1.05rem; font-weight: 700; border-radius: .5rem;
-      text-decoration: none; transition: all .25s;
+    /* 장식 원 */
+    .cert-highlight::before {
+      content: ''; position: absolute;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(94,199,135,0.12) 0%, transparent 70%);
+      top: -80px; right: -80px; pointer-events: none;
     }
-    .btn-sp-primary:hover { background: var(--c-accent-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
-    .btn-sp-ghost {
-      padding: 1rem 2.5rem; background: transparent; color: #fff;
-      font-size: 1.05rem; font-weight: 700; border-radius: .5rem;
-      text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all .25s;
+    .cert-highlight h3 {
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem); font-weight: 800;
+      color: #ffffff; margin-bottom: 1rem; line-height: 1.3;
     }
-    .btn-sp-ghost:hover { background: rgba(255,255,255,0.05); border-color: #fff; }
-    .hero-stats {
-      display: flex; flex-wrap: wrap; gap: 4rem;
-      margin-top: 5rem; padding-top: 4rem;
+    .cert-highlight-left > p {
+      color: rgba(197,230,216,0.9); font-size: clamp(0.88rem, 1.8vw, 0.95rem);
+      line-height: 1.85; word-break: keep-all; flex: 1; margin-bottom: 0;
+    }
+    .cert-highlight strong { color: var(--mint-500); font-weight: 900; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .dbadge {
+      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(127,214,151,0.5);
+      border-radius: 100px;
+      font-size: clamp(0.72rem, 1.6vw, 0.8rem); font-weight: 700;
+      color: var(--mint-500); background: rgba(127,214,151,0.1);
+      white-space: nowrap; transition: all 0.2s;
+    }
+    .dbadge:hover { background: rgba(127,214,151,0.2); border-color: var(--mint-500); }
+
+    /* 우측 — 숫자 하이라이트 카드들 */
+    .cert-stat-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .cert-stat-item {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: background 0.2s;
+    }
+    .cert-stat-item:hover { background: rgba(255,255,255,0.09); }
+    .cert-stat-icon {
+      width: 42px; height: 42px; flex-shrink: 0; border-radius: 10px;
+      background: rgba(79,168,118,0.2); border: 1px solid rgba(79,168,118,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; color: var(--mint-500);
+    }
+    .cert-stat-text { display: flex; flex-direction: column; gap: 0.15rem; }
+    .cert-stat-val { font-size: 1.1rem; font-weight: 800; color: #ffffff; line-height: 1; }
+    .cert-stat-desc { font-size: 0.78rem; color: rgba(197,230,216,0.75); font-weight: 500; }
+    .cert-sub-note {
+      margin-top: 2rem; padding-top: 1.5rem;
       border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.82rem; color: rgba(197,230,216,0.6);
+      text-align: right; font-weight: 500; line-height: 1.6;
     }
-    .hero-stat-num { font-size: 2.5rem; font-weight: 800; color: #fff; display: block; line-height: 1; }
-    .hero-stat-label { font-size: .9rem; color: #64748b; margin-top: .5rem; display: block; font-weight: 600; }
 
-    /* CARDS */
-    .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-    .value-card {
-      background: var(--c-bg-card); border-radius: var(--r-lg); padding: 3rem 2.5rem;
-      border: 1px solid var(--c-border); transition: all .3s var(--ease);
+    @media (max-width: 768px) {
+      .cert-highlight { grid-template-columns: 1fr; }
+      .cert-highlight-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 2rem 1.5rem; }
+      .cert-highlight-right { padding: 2rem 1.5rem; }
     }
-    .value-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--c-accent); }
-    .value-icon { font-size: 2.5rem; color: var(--c-accent); margin-bottom: 1.5rem; }
-    .value-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; color: var(--c-primary); }
-    .value-card p { font-size: 1rem; color: var(--c-muted); line-height: 1.7; }
-    .mission-bar {
-      margin-top: 5rem; background: var(--c-primary); border-radius: var(--r-lg);
-      padding: 4rem; color: #fff; text-align: center;
+    @media (max-width: 480px) {
+      .cert-highlight-left, .cert-highlight-right { padding: 1.5rem 1.25rem; }
+      .dbadge { font-size: 0.72rem; padding: 0.35rem 0.85rem; }
     }
-    .mission-bar p { font-size: 1.75rem; font-weight: 700; line-height: 1.4; margin-bottom: 1rem; }
-    .mission-bar small { font-size: 1rem; color: #94a3b8; font-weight: 500; }
 
-    /* SERVICES */
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
-    .svc-card {
-      background: var(--c-bg-card); border-radius: var(--r-lg); padding: 2.5rem;
-      border: 1px solid var(--c-border); transition: all .3s; display: flex; flex-direction: column;
-    }
-    .svc-card:hover { border-color: var(--c-accent); box-shadow: var(--shadow-md); }
-    .svc-num { font-size: 0.85rem; font-weight: 800; color: #e2e8f0; margin-bottom: 1.5rem; }
-    .svc-icon { font-size: 2rem; color: var(--c-accent); margin-bottom: 1.5rem; }
-    .svc-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; color: var(--c-primary); }
-    .svc-card p { font-size: 0.95rem; color: var(--c-muted); flex: 1; margin-bottom: 1.5rem; }
-    .svc-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .svc-tag { font-size: .75rem; padding: .25rem .75rem; background: var(--c-bg-alt); border-radius: 4px; color: var(--c-primary); font-weight: 600; }
+    /* ── HISTORY ── */
+    .history-grid { display: grid; grid-template-columns: 300px 1fr; gap: 6rem; margin-top: 4rem; position: relative; z-index: 1; }
+    .timeline { position: relative; padding-left: 2.75rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent) 0%, transparent 100%); }
+    .tl-item { position: relative; margin-bottom: 3rem; }
+    .tl-item::before { content: ''; position: absolute; left: -2.75rem; top: 0.65rem; width: 11px; height: 11px; background: #ffffff; border-radius: 50%; transform: translateX(-50%); border: 3px solid var(--bg-section-darker); box-shadow: 0 0 0 3px rgba(255,255,255,0.25); }
+    .tl-year { font-family: 'Poppins', sans-serif; font-size: 1.35rem; font-weight: 600; color: #ffffff; margin-bottom: 0.65rem; }
+    .tl-event { display: block; font-size: 0.93rem; color: var(--text-inverse-muted); margin-bottom: 0.35rem; font-weight: 500; }
 
-    /* CERTIFICATIONS */
-    .cert-layout { display: grid; grid-template-columns: 1fr 340px; gap: 4rem; margin-top: 4rem; }
-    .cert-item {
-      display: flex; gap: 1.5rem; padding: 2rem; background: rgba(255,255,255,0.03);
-      border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem;
+    /* ── CONTACT (세련된 클래식 레이아웃 고도화) ── */
+    #contact { 
+      background: var(--bg-section-1); 
+      position: relative; 
+      overflow: hidden; 
+      padding: 100px 0; 
     }
-    .cert-icon { font-size: 1.75rem; color: var(--c-accent); }
-    .cert-item h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
-    .cert-item p { font-size: .95rem; color: #94a3b8; margin: 0; }
-    .cert-badge-panel {
-      background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
-      border-radius: var(--r-lg); border: 1px solid rgba(16, 185, 129, 0.2);
-      padding: 4rem 2rem; text-align: center;
+    
+    .contact-grid-classic { 
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: stretch;
     }
-    .cert-badge-panel i { font-size: 4rem; color: var(--c-accent); margin-bottom: 2rem; display: block; }
-    .cert-badge-panel span { font-size: 1.25rem; font-weight: 800; display: block; line-height: 1.4; }
+    
+    .contact-info-col { display: flex; flex-direction: column; padding-top: 1rem; }
+    
+    /* 연락처 텍스트와 아이콘 레이아웃 개선 */
+    .contact-rows-classic { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2.5rem; }
+    .c-row-classic { display: flex; align-items: center; gap: 1.2rem; }
+    
+    .c-icon-wrap {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 1.2rem; flex-shrink: 0;
+      box-shadow: var(--shadow-sm); transition: transform 0.3s ease;
+    }
+    .c-row-classic:hover .c-icon-wrap { transform: scale(1.05); border-color: var(--accent); }
+    
+    .c-text-classic { display: flex; flex-direction: column; gap: 0.1rem; }
+    .c-text-classic .c-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .c-text-classic .c-value { font-size: 1rem; font-weight: 600; color: var(--text-main); }
+    .c-text-classic .c-value a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .c-text-classic .c-value a:hover { color: var(--accent); }
 
-    /* PORTFOLIO & HISTORY */
-    .portfolio-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; }
-    .client-pill {
-      display: inline-block; padding: .5rem 1.25rem; background: #fff;
-      border: 1px solid var(--c-border); border-radius: 100px; margin: 0 .5rem .75rem 0;
-      font-size: .9rem; font-weight: 600; color: var(--c-primary);
+    /* 빠른 길찾기 (무거운 박스를 치우고 선으로 깔끔하게 구분) */
+    .qd-box-classic { 
+      margin-top: 3.5rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
     }
-    .stat-card {
-      background: var(--c-bg-card); border-radius: var(--r-lg); padding: 2.5rem;
-      border: 1px solid var(--c-border); text-align: center;
+    .qd-box-classic .qd-label { 
+      font-size: 0.8rem; font-weight: 800; color: var(--text-main); 
+      text-transform: uppercase; margin-bottom: 1.2rem; display: block; letter-spacing: 0.05em; 
     }
-    .stat-card .n { font-size: 2.5rem; font-weight: 800; color: var(--c-accent); display: block; }
-    .history-layout { display: grid; grid-template-columns: 320px 1fr; gap: 6rem; margin-top: 4rem; }
-    .timeline { position: relative; padding-left: 3rem; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--c-border); }
-    .tl-item { position: relative; margin-bottom: 4rem; }
-    .tl-item::before {
-      content: ''; position: absolute; left: -3rem; top: 0.5rem;
-      width: 11px; height: 11px; background: var(--c-accent); border-radius: 50%;
-      transform: translateX(-50%); border: 3px solid #fff; box-shadow: 0 0 0 4px var(--c-bg-alt);
+    .qd-btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-map {
+      flex: 1; justify-content: center; padding: 0.9rem 1.2rem; 
+      border-radius: var(--r); font-weight: 600; cursor: pointer; transition: all 0.3s; 
+      display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; 
+      background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm); text-decoration: none; -webkit-tap-highlight-color: transparent;
     }
-    .tl-year { font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 1rem; }
-    .tl-event { display: block; font-size: 1.05rem; color: var(--c-muted); margin-bottom: .5rem; font-weight: 500; }
+    .btn-map:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); color: var(--accent); }
+    .btn-map.primary { background: var(--text-main); color: var(--bg-body); border-color: var(--text-main); }
+    [data-theme="dark"] .btn-map.primary { background: var(--accent); color: var(--bg-body); border-color: var(--accent); }
+    .btn-map.primary:hover { filter: brightness(1.1); color: var(--bg-body); }
 
-    /* CONTACT */
-    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; }
-    .c-row {
-      display: flex; gap: 1.5rem; padding: 2rem; background: #fff;
-      border-radius: var(--r-lg); border: 1px solid var(--c-border); margin-bottom: 1rem;
+    /* 우측 지도 컨테이너 — 좌측 컬럼 높이에 맞게 자동으로 늘어남 */
+    .contact-map-col {
+      width: 100%; height: 100%; min-height: 480px; border-radius: var(--r-xl); overflow: hidden;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border); position: relative;
+      margin-top: 0;
     }
-    .c-row-icon { font-size: 1.5rem; color: var(--c-accent); }
-    .c-label { font-size: .8rem; font-weight: 800; color: var(--c-muted); text-transform: uppercase; margin-bottom: .25rem; }
-    .c-value { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); }
-    .contact-map { border-radius: var(--r-lg); min-height: 450px; overflow: hidden; border: 1px solid var(--c-border); }
-    .contact-map iframe { width: 100%; height: 100%; min-height: 450px; border: 0; display: block; }
+    .contact-map-col iframe {
+      width: 100%; height: 100%; border: none;
+      filter: var(--map-filter); transition: filter 0.5s ease;
+    }
+    .contact-map-col:hover iframe { filter: none; }
 
-    /* FOOTER */
-    footer { background: #0a0f1c; padding: 5rem 0; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); }
-    .footer-inner {
-      max-width: 1240px; margin: 0 auto; padding: 0 2rem;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
-    }
-    .footer-brand {
-      font-weight: 800; color: #fff; font-size: 1.2rem;
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .footer-brand img {
-      height: 30px; width: auto;
-      filter: brightness(1.1) drop-shadow(0 0 6px rgba(37, 99, 168, 0.3));
-    }
-    .footer-copy { font-size: .9rem; text-align: right; }
+    /* ── FOOTER ── */
+    footer { background: var(--bg-section-darker); border-top: 1px solid var(--border-dark); padding: 3.5rem 0; color: var(--text-inverse); }
+    .footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: 0.65rem; font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; color: var(--text-inverse); }
+    .footer-brand img { height: 30px; width: auto; opacity: 0.9; }
+    .footer-copy { font-size: 0.82rem; color: var(--text-inverse-muted); line-height: 1.8; text-align: right; }
 
+    /* ── FAB ── */
     .sp-fab {
-      position: fixed; bottom: 2.5rem; right: 2.5rem; width: 60px; height: 60px;
-      background: var(--c-accent); color: #fff; border-radius: 50%;
-      display: none; align-items: center; justify-content: center; font-size: 1.5rem;
-      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); z-index: 500; transition: .3s;
+      position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px;
+      background: var(--accent); color: var(--bg-body); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1rem;
+      box-shadow: var(--shadow-md); opacity: 0; transform: translateY(12px); transition: all 0.3s ease; z-index: 900;
     }
-    .sp-fab:hover { background: var(--c-accent-dark); transform: scale(1.1); }
-    .sp-fab.visible { display: flex; }
+    .sp-fab.visible { opacity: 1; transform: translateY(0); }
+    .sp-fab:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
-    @media (max-width: 991px) {
+    /* ── 모바일 반응형 ── */
+    @media (max-width: 1024px) {
+      .contact-grid-classic { gap: 3rem; }
+      .contact-map-col { height: 400px; margin-top: 2rem; }
+      .history-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-grid { grid-template-columns: repeat(2, 1fr); }
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .sp-section { padding: 80px 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-right { display: none; }
       .sp-nav-links { display: none; }
       .sp-hamburger { display: flex; }
-      .value-grid, .services-grid, .cert-layout, .portfolio-wrap, .history-layout, .contact-layout { grid-template-columns: 1fr; }
-      .hero-stats { gap: 2rem; }
-      .mission-bar { padding: 3rem 1.5rem; }
-      .mission-bar p { font-size: 1.35rem; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-copy { text-align: center; }
+      .svc-grid, .about-grid { grid-template-columns: 1fr; }
+      .sp-wrap { padding: 0 1.25rem; }
+      .section-title { font-size: clamp(1.5rem, 4vw, 2.2rem); }
+      .logo-card-light { min-width: 160px; }
+      
+      .contact-grid-classic { grid-template-columns: 1fr; gap: 2rem; }
+      .btn-map { padding: 1rem; font-size: 1rem; }
+      .contact-map-col { height: 320px; min-height: 320px; order: -1; margin-top: 0; }
+
+      .cert-highlight { padding: 1.75rem 1.25rem; }
+      .cert-section-header { margin-bottom: 2rem; }
+      .badge-row { gap: 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .sp-section { padding: 60px 0; }
+      .sp-wrap { padding: 0 1rem; }
+      .logo-card-light { min-width: 130px; }
+      .qd-btn-group { flex-direction: column; }
+      .cert-highlight { padding: 1.25rem 1rem; }
+      .dbadge { font-size: 0.72rem; padding: 0.35rem 0.85rem; }
     }
   </style>
 </head>
 <body>
-  <a class="skip-nav" href="#main-content">본문 바로가기</a>
 
-  <nav class="sp-nav" id="spNav">
+  <nav class="sp-nav" id="spNav" aria-label="주 메뉴">
     <div class="sp-nav-inner">
-      <a class="sp-brand" href="#hero">
-        <img src="./images/logo.png" alt="신풍종합개발 로고">
-        신풍종합개발㈜
+      <a href="#hero" class="sp-brand">
+        <img src="./images/logo.png" alt="신풍종합개발 로고" onerror="this.style.display='none'">
+        <span class="sp-brand-text">신풍종합개발㈜</span>
       </a>
-      <ul class="sp-nav-links">
-        <li><a href="#about">회사소개</a></li>
-        <li><a href="#services">사업분야</a></li>
-        <li><a href="#certifications">인증현황</a></li>
-        <li><a href="#portfolio">주요실적</a></li>
-        <li><a href="#history">연혁</a></li>
-        <li><a href="#contact">문의처</a></li>
-      </ul>
-      <button class="sp-hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-controls">
+        <ul class="sp-nav-links">
+          <li><a href="#about">기업소개</a></li>
+          <li><a href="#services">사업분야</a></li>
+          <li><a href="#certifications">인증·허가</a></li>
+          <li><a href="#history">연혁</a></li>
+          <li><a href="#contact">오시는 길</a></li>
+        </ul>
+        <button class="theme-switch" id="themeToggle" aria-label="테마 변경">
+          <i class="bi bi-moon-stars-fill"></i>
+          <i class="bi bi-sun-fill"></i>
+        </button>
+        <button class="sp-hamburger" id="hamburger" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <div class="sp-mobile-menu" id="mobileMenu">
-    <a href="#about" onclick="closeMobile()">회사소개</a>
+    <a href="#about" onclick="closeMobile()">기업소개</a>
     <a href="#services" onclick="closeMobile()">사업분야</a>
-    <a href="#certifications" onclick="closeMobile()">인증현황</a>
-    <a href="#portfolio" onclick="closeMobile()">주요실적</a>
+    <a href="#certifications" onclick="closeMobile()">인증·허가</a>
     <a href="#history" onclick="closeMobile()">연혁</a>
-    <a href="#contact" onclick="closeMobile()">문의처</a>
+    <a href="#contact" onclick="closeMobile()">오시는 길</a>
   </div>
 
   <main id="main-content">
-    <section id="hero">
-      <div class="hero-inner">
-        <div class="hero-badges" data-aos="fade-up">
-          <span class="hero-badge"><i class="bi bi-award"></i> 사회적기업 인증</span>
-          <span class="hero-badge"><i class="bi bi-person-check"></i> 장애인표준사업장</span>
+
+    <section id="hero" aria-label="메인 히어로">
+      <div class="sp-wrap hero-inner">
+        <div class="hero-left">
+          <div class="hero-badges">
+            <span class="hero-badge"><i class="bi bi-patch-check-fill"></i>사회적기업 인증</span>
+            <span class="hero-badge"><i class="bi bi-person-workspace"></i>장애인표준사업장(일반형) 인증</span>
+          </div>
+          <h1 class="hero-title">
+            사람과 건물을<br>
+            잇는 <em>사회적 가치</em><br>
+            신풍종합개발
+          </h1>
+          <p class="hero-sub">
+            20년의 전문성과 친환경 서비스 철학으로 공공기관, 의료기관, 교육기관의
+            건물 운영을 책임집니다. 지속 가능한 미래를 함께 만듭니다.
+          </p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn-primary">
+              서비스 문의
+              <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="#services" class="btn-ghost">사업분야 보기 →</a>
+          </div>
         </div>
-        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-          사람과 건물을 잇는<br>
-          <em>사회적 가치,</em><br>
-          신풍종합개발(주)
-        </h1>
-        <p class="hero-sub" data-aos="fade-up" data-aos-delay="200">
-          신풍종합개발㈜은 20년의 전문성과 사회적 진정성을 바탕으로<br>
-          고객의 건물을 관리하고 취약계층의 안정적인 자립을 지원합니다.
-        </p>
-        <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
-          <a href="#services" class="btn-sp-primary">사업분야 상세보기</a>
-          <a href="#contact" class="btn-sp-ghost">문의하기</a>
-        </div>
-        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-          <div><span class="hero-stat-num">2004</span><span class="hero-stat-label">창립연도</span></div>
-          <div><span class="hero-stat-num">20+</span><span class="hero-stat-label">전문업력(년)</span></div>
-          <div><span class="hero-stat-num">서울·경기</span><span class="hero-stat-label">서비스지역</span></div>
+
+        <div class="hero-right">
+          <div class="hero-panel">
+            <span class="hero-panel-label">Company Overview · 신풍종합개발㈜</span>
+            
+            <div class="hero-stat-grid">
+              <div class="hero-stat-box"><span class="hsn">20+</span><span class="hsl">전문업력 (년)</span></div>
+              <div class="hero-stat-box"><span class="hsn">500+</span><span class="hsl">완료 프로젝트</span></div>
+              <div class="hero-stat-box"><span class="hsn">100+</span><span class="hsl">협력 기관</span></div>
+              <div class="hero-stat-box"><span class="hsn">6개</span><span class="hsl">사업분야</span></div>
+            </div>
+            
+            <div class="hero-cert-strip" style="margin-bottom: 1.25rem;">
+              <div class="hero-cert"><i class="bi bi-patch-check-fill"></i><span>사회적기업 인증</span></div>
+              <div class="hero-cert"><i class="bi bi-person-workspace"></i><span>장애인표준사업장(일반형) 인증</span></div>
+            </div>
+            
+            <div class="hero-business-info" style="padding-top: 1.25rem; border-top: 1px solid var(--border);">
+              <span class="biz-label">주요 사업</span>
+              <div class="biz-strip">
+                <div class="biz-pill"><i class="bi bi-shield-fill-check"></i><span>시설경비업</span></div>
+                <div class="biz-pill"><i class="bi bi-brush-fill"></i><span>건물위생관리업</span></div>
+                <div class="biz-pill"><i class="bi bi-people-fill"></i><span>근로자파견업</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="sp-section">
+    <section id="partners" class="sp-section-cream" aria-label="파트너사">
+      <div class="partners-header sp-wrap">
+        <span class="eyebrow">Our Partners</span>
+        <div class="accent-line"></div>
+        <h2 class="section-title">함께하는 신뢰의 파트너들</h2>
+              </div>
+
+      <div class="logo-slider-wrap">
+        <div class="logo-slider-tier">
+          <div class="logo-track logo-track-l">
+            <div class="logo-card-light"><img src="./images/kpetro.png" alt="한국석유관리원"></div>
+            <div class="logo-card-light"><img src="./images/korea_Forest_Welfare.png" alt="한국산림복지진흥원"></div>
+            <div class="logo-card-light"><img src="./images/lh.png" alt="LH 한국토지주택공사"></div>
+            <div class="logo-card-light"><img src="./images/gangseo.png" alt="강서고등학교"></div>
+            <div class="logo-card-light"><img src="./images/hwasung.png" alt="화성고등학교"></div>
+            <div class="logo-card-light"><img src="./images/mapo.png" alt="마포고등학교"></div>
+            <!-- duplicate -->
+            <div class="logo-card-light"><img src="./images/kpetro.png" alt="한국석유관리원"></div>
+            <div class="logo-card-light"><img src="./images/korea_Forest_Welfare.png" alt="한국산림복지진흥원"></div>
+            <div class="logo-card-light"><img src="./images/lh.png" alt="LH 한국토지주택공사"></div>
+            <div class="logo-card-light"><img src="./images/gangseo.png" alt="강서고등학교"></div>
+            <div class="logo-card-light"><img src="./images/hwasung.png" alt="화성고등학교"></div>
+            <div class="logo-card-light"><img src="./images/mapo.png" alt="마포고등학교"></div>
+          </div>
+        </div>
+        <div class="logo-slider-tier">
+          <div class="logo-track logo-track-r">
+            <div class="logo-card-light"><img src="./images/seoul_jungae.png" alt="서울정애학교"></div>
+            <div class="logo-card-light"><img src="./images/dawoon.png" alt="다원복지"><span class="logo-label">다원학교</span></div>
+            <div class="logo-card-light"><img src="./images/shinseo.png" alt="신서중학교"><span class="logo-label">신서중학교</span></div>
+            <div class="logo-card-light"><img src="./images/nanhyang.png" alt="난향초등학교"></div>
+            <div class="logo-card-light"><img src="./images/seoul_ahyun.png" alt="서울아현초등학교"></div>
+            <div class="logo-card-light"><img src="./images/yanghwa.png" alt="서울양화초등학교"></div>
+            <!-- duplicate -->
+            <div class="logo-card-light"><img src="./images/seoul_jungae.png" alt="서울정애학교"></div>
+            <div class="logo-card-light"><img src="./images/dawoon.png" alt="다원복지"><span class="logo-label">다원학교</span></div>
+            <div class="logo-card-light"><img src="./images/shinseo.png" alt="신서중학교"><span class="logo-label">신서중학교</span></div>
+            <div class="logo-card-light"><img src="./images/nanhyang.png" alt="난향초등학교"></div>
+            <div class="logo-card-light"><img src="./images/seoul_ahyun.png" alt="서울아현초등학교"></div>
+            <div class="logo-card-light"><img src="./images/yanghwa.png" alt="서울양화초등학교"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="sp-section" aria-label="기업 소개">
       <div class="sp-wrap">
         <span class="eyebrow" data-aos="fade-up">Our Identity</span>
+        <div class="accent-line" data-aos="fade-up"></div>
         <h2 class="section-title" data-aos="fade-up">함께 상생하는 사회적 파트너</h2>
-        <p class="section-desc" data-aos="fade-up">
-          건물의 수명과 가치를 유지하는 전문 관리를 넘어,<br>
-          지역사회와 동행하는 기업 철학을 실천합니다.
-        </p>
-        <div class="value-grid">
-          <div class="value-card" data-aos="fade-up">
-            <div class="value-icon"><i class="bi bi-shield-check"></i></div>
-            <h3>신뢰와 전문성</h3>
-            <p>20년간 축적된 데이터와 전문 인력을 통해 차별화된 건물관리 솔루션을 제공합니다.</p>
+        <div class="about-grid">
+          <div class="value-item" data-aos="fade-up">
+            <div class="vi-icon"><i class="bi bi-shield-check"></i></div>
+            <div><h3>신뢰와 전문성</h3><p>20년간 축적된 데이터와 전문 인력을 통해 차별화된 건물관리 솔루션을 제공합니다.</p></div>
           </div>
-          <div class="value-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="value-icon"><i class="bi bi-heart-fill"></i></div>
-            <h3>사회적 가치</h3>
-            <p>취약계층 고용 창출과 지역사회 돌봄 서비스를 통해 사회 구성원 모두의 행복을 추구합니다.</p>
+          <div class="value-item" data-aos="fade-up" data-aos-delay="60">
+            <div class="vi-icon"><i class="bi bi-heart-fill"></i></div>
+            <div><h3>사회적 가치</h3><p>취약계층 고용 창출과 지역사회 돌봄 서비스를 통해 사회 구성원 모두의 행복을 추구합니다.</p></div>
           </div>
-          <div class="value-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="value-icon"><i class="bi bi-layers-half"></i></div>
-            <h3>통합 서비스</h3>
-            <p>시설경비, 미화, 저수조 청소 등 건물 운영에 필요한 모든 영역을 원스톱으로 관리합니다.</p>
+          <div class="value-item" data-aos="fade-up" data-aos-delay="120">
+            <div class="vi-icon"><i class="bi bi-layers-half"></i></div>
+            <div><h3>통합 서비스</h3><p>시설경비, 미화, 저수조 청소 등 건물 운영에 필요한 모든 영역을 원스톱으로 관리합니다.</p></div>
           </div>
-        </div>
-        <div class="mission-bar" data-aos="fade-up">
-          <p>"우리의 관리가 누군가에게는 안전한 일터가 되고,<br>누군가에게는 따뜻한 보살핌이 됩니다."</p>
-          <small>신풍종합개발㈜ 전 임직원 일동</small>
+          <div class="value-item" data-aos="fade-up" data-aos-delay="180">
+            <div class="vi-icon">
+              <svg viewBox="0 0 100 100" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="85" rx="25" ry="10" fill="#A0826D" opacity="0.4"/>
+                <path d="M 50 85 Q 49 70 50 50" stroke="#2d6a4f" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <ellipse cx="38" cy="60" rx="10" ry="18" fill="#52b788" transform="rotate(-40 38 60)" opacity="0.9"/>
+                <ellipse cx="62" cy="60" rx="10" ry="18" fill="#5ec787" transform="rotate(40 62 60)" opacity="0.9"/>
+                <ellipse cx="50" cy="35" rx="8" ry="12" fill="#74c69d" opacity="0.85"/>
+              </svg>
+            </div>
+            <div><h3>친환경 경영</h3><p>친환경 제품과 지속 가능한 방법론을 통해 환경과 사람 모두를 배려하는 서비스를 실천합니다.</p></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="sp-section sp-section-alt">
+    <section id="services" class="sp-section sp-section-cream" aria-label="사업분야">
       <div class="sp-wrap">
         <span class="eyebrow" data-aos="fade-up">Business Areas</span>
+        <div class="accent-line" data-aos="fade-up"></div>
         <h2 class="section-title" data-aos="fade-up">6가지 핵심 사업분야</h2>
-        <div class="services-grid">
+        <p class="section-desc" data-aos="fade-up">건물 운영의 모든 영역을 하나의 파트너에게. 신풍종합개발의 통합 솔루션입니다.</p>
+        <div class="svc-grid">
           <div class="svc-card" data-aos="fade-up">
             <div class="svc-num">01</div>
             <div class="svc-icon"><i class="bi bi-tools"></i></div>
@@ -403,35 +609,35 @@
             <p>전기, 소방, 기계설비 등 정밀한 기술 점검으로 시설의 안전을 보장합니다.</p>
             <div class="svc-tags"><span class="svc-tag">전기</span><span class="svc-tag">기계</span><span class="svc-tag">소방</span></div>
           </div>
-          <div class="svc-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="60">
             <div class="svc-num">02</div>
             <div class="svc-icon"><i class="bi bi-people-fill"></i></div>
             <h3>근로자파견</h3>
             <p>고객사에 최적화된 우수한 전문 인력을 배치하여 운영의 효율을 높입니다.</p>
             <div class="svc-tags"><span class="svc-tag">전문인력</span><span class="svc-tag">맞춤배치</span></div>
           </div>
-          <div class="svc-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="120">
             <div class="svc-num">03</div>
             <div class="svc-icon"><i class="bi bi-eye-fill"></i></div>
             <h3>시설경비</h3>
             <p>고객의 안전과 재산을 보호하기 위해 365일 24시간 보안 시스템을 가동합니다.</p>
             <div class="svc-tags"><span class="svc-tag">보안</span><span class="svc-tag">안전관리</span></div>
           </div>
-          <div class="svc-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="svc-card" data-aos="fade-up">
             <div class="svc-num">04</div>
             <div class="svc-icon"><i class="bi bi-brush"></i></div>
             <h3>건물위생관리</h3>
             <p>과학적인 청소 공법과 친환경 제품을 사용하여 쾌적한 환경을 유지합니다.</p>
             <div class="svc-tags"><span class="svc-tag">미화</span><span class="svc-tag">방역</span></div>
           </div>
-          <div class="svc-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="60">
             <div class="svc-num">05</div>
             <div class="svc-icon"><i class="bi bi-droplet-fill"></i></div>
             <h3>저수조청소</h3>
             <p>수도법 규정에 따른 정기 소독 및 세척으로 깨끗한 용수 공급을 지원합니다.</p>
             <div class="svc-tags"><span class="svc-tag">위생</span><span class="svc-tag">수질검사</span></div>
           </div>
-          <div class="svc-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="svc-card" data-aos="fade-up" data-aos-delay="120">
             <div class="svc-num">06</div>
             <div class="svc-icon"><i class="bi bi-house-heart"></i></div>
             <h3>돌봄SOS</h3>
@@ -442,158 +648,243 @@
       </div>
     </section>
 
-    <section id="certifications" class="sp-section sp-section-dark">
+    <section id="certifications" class="sp-section sp-section-dark" aria-label="인증 및 허가">
       <div class="sp-wrap">
-        <span class="eyebrow" data-aos="fade-up">Certifications</span>
-        <h2 class="section-title" data-aos="fade-up">공인된 신뢰성</h2>
-        <div class="cert-layout">
-          <div class="cert-list" data-aos="fade-right">
-            <div class="cert-item">
-              <div class="cert-icon"><i class="bi bi-patch-check"></i></div>
-              <div>
-                <h4>고용노동부 인증 사회적기업</h4>
-                <p>일자리 창출 및 지역사회 기여 공헌도를 정부로부터 인정받은 기업입니다.</p>
+        <span class="eyebrow eyebrow-light" data-aos="fade-up">Certifications</span>
+        <div class="accent-line" data-aos="fade-up"></div>
+        
+        <div class="cert-section-header" data-aos="fade-up">
+          <h2 class="section-title section-title-light">공인된 신뢰성</h2>
+        </div>
+        
+        <div class="cert-highlight" data-aos="fade-up">
+          <!-- 좌측: 메인 혜택 내용 -->
+          <div class="cert-highlight-left">
+            <div>
+              <h3>장애인표준사업장의<br>특별한 혜택</h3>
+              <p>신풍종합개발㈜과 연계고용 계약을 체결하는 기업은 <strong>고용부담금 최대 90% 감면</strong>과 장애인 의무고용 이행 인정 혜택을 받을 수 있습니다. 금액에 관계없이 수의계약이 가능합니다.</p>
+            </div>
+            <div class="badge-row">
+              <span class="dbadge">부담금 최대 90% 감면</span>
+              <span class="dbadge">의무고용 이행 인정</span>
+              <span class="dbadge">수의계약 가능</span>
+              <span class="dbadge">ESG 가치 실현</span>
+            </div>
+          </div>
+          <!-- 우측: 핵심 수치 -->
+          <div class="cert-highlight-right">
+            <div class="cert-stat-list">
+              <div class="cert-stat-item">
+                <div class="cert-stat-icon"><i class="bi bi-percent"></i></div>
+                <div class="cert-stat-text">
+                  <span class="cert-stat-val">최대 90% 감면</span>
+                  <span class="cert-stat-desc">고용부담금 절감 혜택</span>
+                </div>
+              </div>
+              <div class="cert-stat-item">
+                <div class="cert-stat-icon"><i class="bi bi-person-check-fill"></i></div>
+                <div class="cert-stat-text">
+                  <span class="cert-stat-val">의무고용 이행 인정</span>
+                  <span class="cert-stat-desc">장애인 고용 의무 자동 충족</span>
+                </div>
+              </div>
+              <div class="cert-stat-item">
+                <div class="cert-stat-icon"><i class="bi bi-file-earmark-check-fill"></i></div>
+                <div class="cert-stat-text">
+                  <span class="cert-stat-val">수의계약 가능</span>
+                  <span class="cert-stat-desc">금액 제한 없이 계약 체결</span>
+                </div>
               </div>
             </div>
-            <div class="cert-item">
-              <div class="cert-icon"><i class="bi bi-person-workspace"></i></div>
-              <div>
-                <h4>장애인표준사업장 인증</h4>
-                <p>장애인 근로자가 편안하고 안전하게 일할 수 있는 환경을 구축하고 있습니다.</p>
-              </div>
-            </div>
+            <p class="cert-sub-note">정부 인증과 법적 자격이 뒷받침하는<br>투명하고 검증된 서비스를 제공합니다.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="portfolio" class="sp-section">
+    <section id="history" class="sp-section sp-section-darker" aria-label="연혁">
       <div class="sp-wrap">
-        <span class="eyebrow" data-aos="fade-up">Portfolio</span>
-        <h2 class="section-title" data-aos="fade-up">함께해온 주요 실적</h2>
-        <div class="portfolio-wrap">
-          <div data-aos="fade-up">
-            <p class="section-desc mb-4">전국 주요 공공기관 및 대규모 주거단지, 복지재단 등 다양한 파트너들과 함께 신뢰를 쌓아왔습니다.</p>
-            <div class="client-pills">
-              <span class="client-pill">서울특별시청</span><span class="client-pill">공공기관</span><span class="client-pill">종합병원</span>
-              <span class="client-pill">교육시설</span><span class="client-pill">지식산업센터</span><span class="client-pill">복지관</span>
-            </div>
-          </div>
-          <div class="row g-4" data-aos="fade-up">
-            <div class="col-6"><div class="stat-card"><span class="n">20년</span><span class="l">경험</span></div></div>
-            <div class="col-6"><div class="stat-card"><span class="n">500+</span><span class="l">프로젝트</span></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="history" class="sp-section sp-section-alt">
-      <div class="sp-wrap">
-        <div class="history-layout">
+        <div class="history-grid">
           <div data-aos="fade-right">
             <span class="eyebrow">Our Journey</span>
-            <h2 class="section-title">주요 연혁</h2>
+            <div class="accent-line"></div>
+            <h2 class="section-title" data-aos="fade-up">주요 연혁</h2>
+            <p class="section-desc">2004년 창립 이후 끊임없는 성장과 인증을 통해 신뢰받는 사회적기업으로 자리매김했습니다.</p>
           </div>
           <div class="timeline" data-aos="fade-left">
             <div class="tl-item">
               <div class="tl-year">2004 — 창립</div>
-              <span class="tl-event">신풍종합개발㈜ 설립 및 영업 개시</span>
-              <span class="tl-event">건물위생 및 관리업 인허가 취득</span>
+              <span class="tl-event">건물위생관리업 허가 취득 (2006)</span>
+              <span class="tl-event">저수조청소업 허가 취득 (2006)</span>
+              <span class="tl-event">소독업 허가 취득 (2006)</span>
             </div>
             <div class="tl-item">
-              <div class="tl-year">2014 — 인증</div>
-              <span class="tl-event">장애인 표준사업장 인증 획득</span>
-              <span class="tl-event">취약계층 고용 창출 체계 구축</span>
+              <div class="tl-year">2011 — 성장</div>
+              <span class="tl-event">근로자파견업 허가 취득 (2012)</span>
+              <span class="tl-event">시설경비업 허가 취득 (2015)</span>
+              <span class="tl-event">사회적기업 인증 (2020)</span>
+              <span class="tl-event">돌봄SOS 서비스 시작 (2020)</span>
             </div>
             <div class="tl-item">
-              <div class="tl-year">2017 — 성장</div>
-              <span class="tl-event">고용노동부 인증 사회적기업 승인</span>
-              <span class="tl-event">지역사회 돌봄SOS 서비스 개시</span>
-            </div>
-            <div class="tl-item">
-              <div class="tl-year">Present — 혁신</div>
+              <div class="tl-year">2024 — 혁신</div>
+              <span class="tl-event">우수사회적기업 인증 (2024)</span>
+              <span class="tl-event">장애인표준사업장(일반형) 인증 (2025)</span>
               <span class="tl-event">디지털 통합 관리 시스템 도입</span>
-              <span class="tl-event">양천구 LT삼보 지식산업센터 사무실 이전</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ✅ 연락처 섹션 (ADDRESS → PHONE → FAX → EMAIL 순서) -->
-    <section id="contact" class="sp-section">
+    <section id="contact" class="sp-section" aria-label="연락처">
       <div class="sp-wrap">
-        <span class="eyebrow" data-aos="fade-up">Contact Us</span>
-        <h2 class="section-title" data-aos="fade-up">오시는 길</h2>
-        <div class="contact-layout">
-          <div class="contact-rows" data-aos="fade-right">
-            <div class="c-row">
-              <div class="c-row-icon"><i class="bi bi-geo-alt"></i></div>
-              <div>
-                <div class="c-label">Address</div>
-                <div class="c-value">서울특별시 양천구 안양천로 1131, 913호</div>
+        
+        <div class="contact-grid-classic">
+          <div class="contact-info-col" data-aos="fade-right">
+            <span class="eyebrow">Contact Us</span>
+            <h2 class="section-title" style="margin-bottom: 1rem;">오시는 길</h2>
+            <p class="section-desc" style="font-size: 0.95rem;">서비스 문의 및 견적 상담은 언제든지 환영합니다.</p>
+
+            <div class="contact-rows-classic">
+              <div class="c-row-classic">
+                <div class="c-icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
+                <div class="c-text-classic">
+                  <span class="c-label">Address</span>
+                  <span class="c-value">서울특별시 양천구 안양천로 1131, 913호</span>
+                </div>
+              </div>
+              <div class="c-row-classic">
+                <div class="c-icon-wrap"><i class="bi bi-telephone-fill"></i></div>
+                <div class="c-text-classic">
+                  <span class="c-label">Phone</span>
+                  <span class="c-value"><a href="tel:02-716-9008">02-716-9008</a></span>
+                </div>
+              </div>
+              <div class="c-row-classic">
+                <div class="c-icon-wrap"><i class="bi bi-printer-fill"></i></div>
+                <div class="c-text-classic">
+                  <span class="c-label">Fax</span>
+                  <span class="c-value">02-2607-9008</span>
+                </div>
+              </div>
+              <div class="c-row-classic">
+                <div class="c-icon-wrap"><i class="bi bi-envelope-fill"></i></div>
+                <div class="c-text-classic">
+                  <span class="c-label">Email</span>
+                  <span class="c-value"><a href="mailto:sm778803@naver.com">sm778803@naver.com</a></span>
+                </div>
               </div>
             </div>
-            <div class="c-row">
-              <div class="c-row-icon"><i class="bi bi-telephone"></i></div>
-              <div>
-                <div class="c-label">Phone</div>
-                <div class="c-value">02-716-9008</div>
-              </div>
-            </div>
-            <div class="c-row">
-              <div class="c-row-icon"><i class="bi bi-printer"></i></div>
-              <div>
-                <div class="c-label">Fax</div>
-                <div class="c-value">02-2607-9008</div>
-              </div>
-            </div>
-            <div class="c-row">
-              <div class="c-row-icon"><i class="bi bi-envelope"></i></div>
-              <div>
-                <div class="c-label">Email</div>
-                <div class="c-value">sm778803@naver.com</div>
+
+            <div class="qd-box-classic">
+              <span class="qd-label">빠른 길찾기</span>
+              <div class="qd-btn-group">
+                <a class="btn-map primary" href="https://map.naver.com/v5/search/서울특별시%20양천구%20안양천로%201131" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-map-fill"></i> 네이버 지도
+                </a>
+                <a class="btn-map" href="https://map.kakao.com/link/search/서울특별시%20양천구%20안양천로%201131" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-pin-map-fill"></i> 카카오맵
+                </a>
               </div>
             </div>
           </div>
-          <div class="contact-map" data-aos="fade-left">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25308.38983968502!2d126.85080221562498!3d37.5421337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9fa358c4354d%3A0xccf7fafd2354bc3!2z7Iug66qp64-Z7JetIExU7IK867O0IOyngOyLneyCsOyXheyEvO2EsCBNLk9L!5e0!3m2!1sko!2skr!4v1764027354451!5m2!1sko!2skr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+          <div class="contact-map-col" data-aos="fade-left">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1582.7147448053752!2d126.85080221562498!3d37.5421337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f16.5!3m3!1m2!1s0x357c9fa358c4354d%3A0xccf7fafd2354bc3!2z7Iug66qp64-Z7JetIExU7IK867O0IOyngOyLneyCsOyXheyEvO2EsCBNLk9L!5e0!3m2!1sko!2skr!4v1764027354451!5m2!1sko!2skr" 
+              allowfullscreen="" loading="lazy">
+            </iframe>
           </div>
+          
         </div>
       </div>
     </section>
+
   </main>
 
-  <!-- ✅ 푸터 (로고 + 연락처 + 팩스) -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="./images/logo.png" alt="신풍종합개발 로고">
+        <img src="./images/logo.png" alt="신풍종합개발 로고" onerror="this.style.display='none'">
         신풍종합개발㈜
       </div>
       <div class="footer-copy">
-        Tel. 02-716-9008 &nbsp;|&nbsp; Fax. 02-2607-9008 &nbsp;|&nbsp; sm778803@naver.com<br>
-        © 2026 Shinpoong General Development. All Rights Reserved.
+        Tel. 02-716-9008  |  Fax. 02-2607-9008  |  sm778803@naver.com<br>
+        서울특별시 양천구 안양천로 1131, 913호<br>
+        © 2004–2026 Shinpoong General Development. All Rights Reserved.
       </div>
     </div>
   </footer>
 
-  <a href="#hero" class="sp-fab" id="fab"><i class="bi bi-arrow-up"></i></a>
+  <a href="#hero" class="sp-fab" id="fab" aria-label="맨 위로"><i class="bi bi-arrow-up"></i></a>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });
+
     const nav = document.getElementById('spNav');
     const fab = document.getElementById('fab');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
       fab.classList.toggle('visible', window.scrollY > 400);
-    });
+    }, { passive: true });
+
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
     function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    // 다크 모드 수동 스위치 로직
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+      htmlElement.setAttribute('data-theme', savedTheme);
+    } else if (prefersDark) {
+      htmlElement.setAttribute('data-theme', 'dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sp-nav-links a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+      });
+    }, { passive: true });
+
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const raw = el.textContent.trim();
+        const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+        if (isNaN(num)) { cObs.unobserve(el); return; }
+        const sfx = raw.replace(/[\d.]/g, '');
+        let start;
+        const dur = 1600;
+        const step = t => {
+          if (!start) start = t;
+          const p = Math.min((t - start) / dur, 1);
+          el.textContent = Math.round(num * (1 - Math.pow(1 - p, 3))) + sfx;
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        cObs.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.hsn').forEach(el => cObs.observe(el));
   </script>
 </body>
 </html>
