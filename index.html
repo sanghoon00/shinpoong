@@ -131,6 +131,8 @@
     .sp-section { padding: 120px 0; position: relative; }
     .sp-section-light { background: var(--bg-section-1); }
     .sp-section-cream { background: var(--bg-section-2); }
+    /* 같은 배경 섹션이 이어질 때 여백이 두 배로 보이지 않도록 */
+    #certifications + #about { padding-top: 0; }
     .sp-section-dark { background: var(--bg-section-dark); color: var(--text-inverse); }
     .sp-section-darker { background: var(--bg-section-darker); color: var(--text-inverse); }
 
