@@ -128,11 +128,9 @@
 
     /* ── LAYOUT & TYPOGRAPHY ── */
     .sp-wrap { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-    .sp-section { padding: 120px 0; position: relative; }
+    .sp-section { padding: 80px 0; position: relative; }
     .sp-section-light { background: var(--bg-section-1); }
     .sp-section-cream { background: var(--bg-section-2); }
-    /* 같은 배경 섹션이 이어질 때 여백이 두 배로 보이지 않도록 */
-    #certifications + #about { padding-top: 0; }
     .sp-section-dark { background: var(--bg-section-dark); color: var(--text-inverse); }
     .sp-section-darker { background: var(--bg-section-darker); color: var(--text-inverse); }
 
@@ -180,7 +178,7 @@
     .biz-pill span, .hero-cert span { font-size: 0.85rem; font-weight: 700; color: var(--text-main); line-height: 1.25; }
 
     /* ── PARTNERS ── */
-    #partners { padding: 100px 0; border-top: 1px solid var(--border); overflow: hidden; position: relative; }
+    #partners { padding: 80px 0; border-top: 1px solid var(--border); overflow: hidden; position: relative; }
     .partners-header { text-align: center; margin-bottom: 4rem; position: relative; z-index: 1; }
     .partners-header .accent-line { margin: 0 auto 1.5rem; }
     .logo-slider-wrap { overflow: hidden; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
@@ -333,7 +331,7 @@
       background: var(--bg-section-1); 
       position: relative; 
       overflow: hidden; 
-      padding: 100px 0; 
+      padding: 80px 0; 
     }
     
     .contact-grid-classic { 
@@ -421,7 +419,7 @@
       .svc-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      .sp-section { padding: 80px 0; }
+      .sp-section, #partners, #contact { padding: 64px 0; }
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
       .hero-right { display: none; }
       .sp-nav-links { display: none; }
@@ -440,7 +438,7 @@
       .badge-row { gap: 0.5rem; }
     }
     @media (max-width: 480px) {
-      .sp-section { padding: 60px 0; }
+      .sp-section, #partners, #contact { padding: 48px 0; }
       .sp-wrap { padding: 0 1rem; }
       .logo-card-light { min-width: 130px; }
       .qd-btn-group { flex-direction: column; }
