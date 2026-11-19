@@ -734,42 +734,42 @@
             <div class="svc-num">01</div>
             <div class="svc-icon"><i class="bi bi-tools"></i></div>
             <h3>건물시설관리</h3>
-            <p>전기, 소방, 기계설비 등 정밀한 기술 점검으로 시설의 안전을 보장합니다.</p>
+            <p>전기, 소방, 기계설비 등 정밀한 기술 점검으로<br>시설의 안전을 보장합니다.</p>
             <div class="svc-tags"><span class="svc-tag">전기</span><span class="svc-tag">기계</span><span class="svc-tag">소방</span></div>
           </div>
           <div class="svc-card" data-aos="fade-up" data-aos-delay="60">
             <div class="svc-num">02</div>
             <div class="svc-icon"><i class="bi bi-brush"></i></div>
             <h3>건물위생관리(소독, 에어컨)</h3>
-            <p>과학적인 청소 공법과 친환경 제품을 사용하여 쾌적한 환경을 유지합니다.</p>
+            <p>과학적인 청소 공법과 친환경 제품을 사용하여<br>쾌적한 환경을 유지합니다.</p>
             <div class="svc-tags"><span class="svc-tag">미화</span><span class="svc-tag">방역</span></div>
           </div>
           <div class="svc-card" data-aos="fade-up" data-aos-delay="120">
             <div class="svc-num">03</div>
             <div class="svc-icon"><i class="bi bi-droplet-fill"></i></div>
             <h3>저수조청소</h3>
-            <p>수도법 규정에 따른 정기 소독 및 세척으로 깨끗한 용수 공급을 지원합니다.</p>
+            <p>수도법 규정에 따른 정기 소독 및 세척으로<br>깨끗한 용수 공급을 지원합니다.</p>
             <div class="svc-tags"><span class="svc-tag">위생</span><span class="svc-tag">수질검사</span></div>
           </div>
           <div class="svc-card" data-aos="fade-up">
             <div class="svc-num">04</div>
             <div class="svc-icon"><i class="bi bi-eye-fill"></i></div>
             <h3>시설경비</h3>
-            <p>고객의 안전과 재산을 보호하기 위해 365일 24시간 보안 시스템을 가동합니다.</p>
+            <p>고객의 안전과 재산을 보호하기 위해<br>365일 24시간 보안 시스템을 가동합니다.</p>
             <div class="svc-tags"><span class="svc-tag">보안</span><span class="svc-tag">안전관리</span></div>
           </div>
           <div class="svc-card" data-aos="fade-up" data-aos-delay="60">
             <div class="svc-num">05</div>
             <div class="svc-icon"><i class="bi bi-people-fill"></i></div>
             <h3>근로자파견</h3>
-            <p>고객사에 최적화된 우수한 전문 인력을 배치하여 운영의 효율을 높입니다.</p>
+            <p>고객사에 최적화된 우수한 전문 인력을 배치하여<br>운영의 효율을 높입니다.</p>
             <div class="svc-tags"><span class="svc-tag">전문인력</span><span class="svc-tag">맞춤배치</span></div>
           </div>
           <div class="svc-card" data-aos="fade-up" data-aos-delay="120">
             <div class="svc-num">06</div>
             <div class="svc-icon"><i class="bi bi-house-heart"></i></div>
             <h3>돌봄SOS</h3>
-            <p>긴급한 돌봄이 필요한 가구에 가사지원 및 사회 서비스를 제공합니다.</p>
+            <p>긴급한 돌봄이 필요한 가구에<br>가사지원 및 사회 서비스를 제공합니다.</p>
             <div class="svc-tags"><span class="svc-tag">가사지원</span><span class="svc-tag">사회복지</span></div>
           </div>
         </div>
@@ -915,13 +915,8 @@
     const themeToggle = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-      htmlElement.setAttribute('data-theme', savedTheme);
-    } else if (prefersDark) {
-      htmlElement.setAttribute('data-theme', 'dark');
-    }
+    // 버튼을 누른 적 없으면 라이트, 누른 적 있으면 저장된 테마
+    htmlElement.setAttribute('data-theme', savedTheme === 'dark' ? 'dark' : 'light');
 
     themeToggle.addEventListener('click', () => {
       const currentTheme = htmlElement.getAttribute('data-theme');
